@@ -1,1 +1,101 @@
-Hello World
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的活動官方網站</title>
+    <style>
+        /* 1. 全域基本設定 */
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        /* 2. 方塊的容器：自動變成一列或兩列排版 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* 3. 精美點選方塊的樣式設計 */
+        .menu-box {
+            background-color: #ffffff;
+            border-left: 6px solid #3498db; /* 左側的藍色裝飾條 */
+            border-radius: 8px;
+            padding: 25px 20px;
+            text-align: left;
+            text-decoration: none; /* 移除超連結下底線 */
+            color: #333333;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* 微弱的陰影 */
+            transition: all 0.2s ease-in-out; /* 讓滑鼠移過去的動畫平滑 */
+        }
+
+        /* 4. 當滑鼠移到方塊上時的視覺特效 */
+        .menu-box:hover {
+            transform: translateY(-5px); /* 向上微浮起來 */
+            background-color: #3498db;
+            color: #ffffff;
+            border-left-color: #2980b9;
+        }
+
+        .menu-box h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
+        }
+
+        .menu-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 網站大標題 -->
+    <h1>新世紀領導人才培育營 24th</h1>
+
+    <!-- 點選方塊大集合區域 -->
+    <div class="grid-container">
+
+        <!-- 方塊 1 -->
+        <a href="rules.html" class="menu-box">
+            <h3>📜 營期規範</h3>
+            <p>點擊了解營隊期間的所有守則</p>
+        </a>
+
+        <!-- 方塊 2 -->
+        <a href="photos.html" class="menu-box">
+            <h3>📷 相片集錦</h3>
+            <p>留存每一刻精彩的活動紀錄</p>
+        </a>
+
+        <!-- 方塊 3 -->
+        <a href="https://google.com" target="_blank" class="menu-box">
+            <h3>💬 思辨任務</h3>
+            <p>跳轉至外部討論平台或表單</p>
+        </a>
+
+        <!-- 方塊 4 -->
+        <a href="teachers.html" class="menu-box">
+            <h3>👨‍🏫 老師的話</h3>
+            <p>看看師長們給學員的心靈雞湯</p>
+        </a>
+
+    </div>
+
+</body>
+</html>

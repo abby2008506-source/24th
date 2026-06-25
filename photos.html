@@ -5,73 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>相片集錦 - 第24期進階培育營</title>
     <style>
+        /* 沿用海報的科技深藍色 */
         body { 
-            font-family: sans-serif; 
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif; 
             margin: 0; 
-            background-color: #0b2545; /* 沿用海報深藍色 */
+            background-color: #0b2545; 
             color: #ffffff; 
             text-align: center; 
         }
         header { 
             background: linear-gradient(135deg, #134074, #0b2545); 
-            padding: 40px 20px; 
+            padding: 50px 20px; 
             border-bottom: 4px solid #e9c46a; 
         }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+        }
         .container { 
-            max-width: 1200px; 
+            max-width: 900px; 
             margin: 40px auto; 
             padding: 0 20px; 
         }
         
-        /* 照片網格排版 */
-        .photo-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
+        .intro-text {
+            font-size: 1.1rem;
+            color: #e9c46a;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* 天數列表排版 */
+        .day-list { 
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
         
-        /* 單張照片外框卡片 */
-        .photo-card { 
+        /* 天數方塊卡片樣式 */
+        .day-card { 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background: #ffffff; 
-            padding: 10px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
-            transition: transform 0.3s;
-        }
-        .photo-card:hover {
-            transform: scale(1.03);
-        }
-        
-        /* 照片本身樣式 */
-        .photo-card img { 
-            width: 100%; 
-            height: 220px; 
-            object-fit: cover; /* 自動裁切填滿，避免變形 */
-            border-radius: 4px; 
-        }
-        
-        /* 照片底下的文字說明 */
-        .photo-desc { 
+            border: 3px solid #e9c46a; 
+            border-radius: 12px; 
+            padding: 20px 30px; 
+            text-decoration: none; 
             color: #0b2545; 
             font-weight: bold; 
-            margin-top: 10px; 
-            font-size: 1rem;
+            font-size: 1.3rem; 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        
+        /* 右側的小箭頭與提示文字 */
+        .day-card::after {
+            content: "前往相簿 ↗";
+            font-size: 0.95rem;
+            background-color: #2a9d8f;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        /* 滑鼠懸停動畫效果 */
+        .day-card:hover { 
+            transform: scale(1.02); 
+            border-color: #f4a261; 
+            color: #f4a261; 
+            box-shadow: 0 8px 16px rgba(244, 162, 97, 0.3);
+        }
+        
+        .day-card:hover::after {
+            background-color: #f4a261;
         }
         
         /* 返回首頁按鈕 */
         .back-btn { 
             display: inline-block; 
-            margin: 40px 0; 
-            padding: 12px 30px; 
+            margin-top: 50px; 
+            padding: 12px 35px; 
             background: #e9c46a; 
             color: #0b2545; 
             text-decoration: none; 
             border-radius: 25px; 
             font-weight: bold; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             transition: background 0.2s;
         }
-        .back-btn:hover { 
-            background: #f4a261; 
+        .back-btn:hover {
+            background: #f4a261;
         }
     </style>
 </head>
@@ -79,32 +104,24 @@
 
     <header>
         <h1>📸 相片集錦</h1>
-        <p>記錄培育營的精采瞬間</p>
+        <p>第 24 期進階培育營 精彩影音紀錄</p>
     </header>
 
     <div class="container">
-        <!-- 照片網格區域開始 -->
-        <div class="photo-grid">
-        
-            <!-- 第一張照片（請自行修改圖片名稱與說明） -->
-            <div class="photo-card">
-                <img src="camp1.jpg" alt="營隊照片">
-                <div class="photo-desc">第一天 🌟 開訓典禮合影</div>
-            </div>
+        <p class="intro-text">💡 提示：點擊下方天數方塊，將會自動開啟新視窗，前往該天別的完整雲端相簿。</p>
 
-            <!-- 第二張照片 -->
-            <div class="photo-card">
-                <img src="camp2.jpg" alt="營隊照片">
-                <div class="photo-desc">小組討論 💡 腦力激盪時刻</div>
-            </div>
-
-            
+        <!-- 天數選擇方塊清單 -->
+        <div class="day-list">
+            <!-- 填入網址教學：請把 href="#" 裡面的 # 換成你當天的 Google 相簿網址 -->
+            <a href="#" target="_blank" class="day-card">📅 第一天 ｜ 07 / 06 營隊開訓與破冰</a>
+            <a href="#" target="_blank" class="day-card">📅 第二天 ｜ 07 / 07 核心課題與專題演講</a>
+            <a href="#" target="_blank" class="day-card">📅 第三天 ｜ 07 / 08 小組思辨與腦力激盪</a>
+            <a href="#" target="_blank" class="day-card">📅 第四天 ｜ 07 / 09 成果發表與領導力論壇</a>
+            <a href="#" target="_blank" class="day-card">📅 第五天 ｜ 07 / 10 結訓典禮與溫馨賦歸</a>
         </div>
-        <!-- 照片網格區域結束 -->
 
         <a href="index.html" class="back-btn">← 返回首頁</a>
     </div>
 
 </body>
 </html>
-

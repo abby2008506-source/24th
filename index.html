@@ -5,99 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>教育部高級中等學校學生新世紀領導人才第24期進階培育營</title>
     <style>
-        /* 提取海報的背景深藍色與字體 */
+        /* 核心變更：將海報融入網頁背景 */
         body { 
             font-family: 'Helvetica Neue', Arial, sans-serif; 
             margin: 0; 
-            background-color: #0b2545; 
+            background: linear-gradient(rgba(11, 37, 69, 0.85), rgba(11, 37, 69, 0.95)), 
+                        url('poster.jpg') no-repeat center top fixed;
+            background-size: cover;
             color: #ffffff; 
             text-align: center; 
+            min-height: 100vh;
         }
         
-        /* 頂部橫幅：模擬海報的漸層色與活潑氛圍 */
+        /* 頂部半透明微光橫幅 */
         header { 
-            background: linear-gradient(135deg, #134074, #0b2545); 
-            padding: 60px 20px; 
-            border-bottom: 5px solid #f4a261; /* 海報上的亮橘色線條 */
-            position: relative;
+            background: rgba(19, 64, 116, 0.4); 
+            backdrop-filter: blur(8px); /* 磨砂玻璃特效，讓後方海報隱約透出 */
+            -webkit-backdrop-filter: blur(8px);
+            padding: 50px 20px; 
+            border-bottom: 4px solid #f4a261;
         }
         
-        /* 模擬海報的主標題樣式 */
         header h1 { 
             font-size: 2.6rem; 
             margin: 0; 
             color: #ffffff;
             letter-spacing: 2px;
-            text-shadow: 3px 3px 0px #134074, 5px 5px 0px #0b2545;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
         
         header .subtitle {
             font-size: 1.3rem;
-            color: #f4a261; /* 橘色 */
+            color: #f4a261;
             font-weight: bold;
             margin-top: 15px;
             letter-spacing: 1px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
         }
 
         header .info-tag {
             display: inline-block;
-            background-color: #e9c46a; /* 亮黃色 */
+            background-color: #e9c46a;
             color: #0b2545;
-            padding: 5px 15px;
+            padding: 6px 18px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 1rem;
-            margin-top: 10px;
+            margin-top: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         
         .container { 
             max-width: 1000px; 
-            margin: 40px auto; 
+            margin: 50px auto; 
             padding: 0 20px; 
         }
         
-        /* 網格系統：呼應海報上的方塊與虛擬實境方格 */
+        /* 點選網格 */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 25px; 
+            gap: 30px; 
         }
         
-        /* 點選方塊：採用乾淨的白色半透明卡片，強調對比度 */
+        /* 點選方塊：微調為科技感毛玻璃，與海報底色完美融合 */
         .card { 
-            background: rgba(255, 255, 255, 0.95); 
-            border: 2px solid #e9c46a; /* 黃色邊框 */
+            background: rgba(255, 255, 255, 0.92); 
+            border: 2px solid #e9c46a;
             border-radius: 16px; 
             padding: 45px 20px; 
             text-decoration: none; 
-            color: #0b2545; /* 深藍色字體 */
+            color: #0b2545;
             font-weight: bold; 
             font-size: 1.4rem; 
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
         
-        /* 滑鼠懸停：卡片會微微向上浮起，且邊框與文字變成海報亮橘色 */
+        /* 滑鼠懸停效果 */
         .card:hover { 
-            transform: translateY(-8px) scale(1.02); 
+            transform: translateY(-8px); 
             border-color: #f4a261; 
-            color: #f4a261;
-            background: #ffffff;
-            box-shadow: 0 12px 20px rgba(244, 162, 97, 0.3);
+            color: #ffffff;
+            background: #f4a261; /* 變成海報上的橘色 */
+            box-shadow: 0 12px 25px rgba(244, 162, 97, 0.5);
         }
         
-        /* 頁尾資訊欄：放上主辦與承辦單位 */
+        /* 頁尾資訊欄 */
         footer { 
-            margin-top: 80px; 
-            padding: 30px; 
+            margin-top: 100px; 
+            padding: 35px; 
             font-size: 0.95rem; 
-            color: #a3b18a; 
-            background: #134074; 
+            color: #e2e8f0; 
+            background: rgba(11, 37, 69, 0.9); 
             border-top: 1px solid rgba(255,255,255,0.1);
             line-height: 1.8;
         }
         footer span {
             color: #e9c46a;
+            font-weight: bold;
         }
     </style>
 </head>

@@ -14,22 +14,33 @@
             text-align: center; 
         }
         
-        /* 頂部海報融合巨幕區 */
+        /* 頂部海報融合巨幕區：改為橫向排列 */
         .hero-banner {
             background: linear-gradient(135deg, #134074, #0b2545);
             padding: 40px 20px;
             border-bottom: 6px solid #e9c46a; /* 海報亮黃色飾條 */
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* 核心：海報圖片容器，完美融入網頁中央 */
+        /* 左側：海報與標題區域 */
+        .left-banner-content {
+            flex: 1;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 核心：海報圖片容器 */
         .poster-wrapper {
-            max-width: 500px; /* 限制海報寬度，避免過大 */
-            width: 90%;
-            margin: 0 auto 20px auto;
+            width: 100%;
+            margin-bottom: 20px;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -43,7 +54,7 @@
 
         /* 網頁標題與海報文字呼應 */
         .main-title {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: #ffffff;
             margin: 15px 0 5px 0;
@@ -52,7 +63,7 @@
         }
 
         .sub-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #f4a261; /* 海報橘色 */
             font-weight: bold;
             margin-bottom: 10px;
@@ -64,8 +75,62 @@
             padding: 6px 20px;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.9rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* 右側：小隊輔介紹區域 */
+        .staff-section {
+            flex: 1.2;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #2a9d8f;
+            border-radius: 16px;
+            padding: 20px;
+            max-height: 550px; /* 限制高度，避免撐開網頁 */
+            overflow-y: auto; /* 超出高度時允許滾動 */
+            box-sizing: border-box;
+        }
+
+        .staff-section h2 {
+            margin-top: 0;
+            color: #e9c46a;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed rgba(233, 196, 106, 0.3);
+            padding-bottom: 10px;
+        }
+
+        /* 小隊輔卡片網格 */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            text-align: left;
+        }
+
+        /* 小隊輔個人卡片 */
+        .staff-card {
+            background: #ffffff;
+            color: #0b2545;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .staff-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #134074;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .staff-desc {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
         }
         
         /* 點選方塊容器 */
@@ -117,19 +182,97 @@
         footer span {
             color: #e9c46a;
         }
+
+        /* RWD 響應式：手機版改為上下堆疊 */
+        @media (max-width: 850px) {
+            .hero-banner {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .left-banner-content {
+                max-width: 90%;
+            }
+            .staff-section {
+                width: 90%;
+                max-height: none; /* 手機版不限制高度，直接展開 */
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- 頂部海報與標題融合區 -->
+    <!-- 頂部海報與小隊輔介紹區 -->
     <div class="hero-banner">
-        <!-- 這裡會直接讀取你上傳的 poster.jpg -->
-        <div class="poster-wrapper">
-            <img src="poster.jpg" alt="第24期進階培育營海報">
+        
+        <!-- 左側：海報與活動標題 -->
+        <div class="left-banner-content">
+            <div class="poster-wrapper">
+                <img src="poster.jpg" alt="第24期進階培育營海報">
+            </div>
+            <div class="sub-title">教育部 高級中等學校學生</div>
+            <h1 class="main-title">新世紀領導人才<br>第 24 期進階培育營</h1>
+            <div class="date-tag">📍 南區 ｜ 115.07.06 - 07.10</div>
         </div>
-        <div class="sub-title">教育部 高級中等學校學生</div>
-        <h1 class="main-title">新世紀領導人才 第 24 期進階培育營</h1>
-        <div class="date-tag">📍 南區 ｜ 115.07.06 - 07.10</div>
+
+        <!-- 右側：10 個小隊輔介紹 -->
+        <div class="staff-section">
+            <h2>⭐ 優秀小隊輔團隊 ⭐</h2>
+            <div class="staff-grid">
+                
+                <!-- 第 1 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔甲 (第1隊)</div>
+                    <div class="staff-desc">親切活力，專長是帶動氣氛與思辨引導。</div>
+                </div>
+                <!-- 第 2 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔乙 (第2隊)</div>
+                    <div class="staff-desc">細心溫柔，隨時準備好解答大家的疑問。</div>
+                </div>
+                <!-- 第 3 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔丙 (第3隊)</div>
+                    <div class="staff-desc">幽默風趣，能用不同的視角看世界。</div>
+                </div>
+                <!-- 第 4 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔丁 (第4隊)</div>
+                    <div class="staff-desc">理性客觀，擅長邏輯分析與團隊協調。</div>
+                </div>
+                <!-- 第 5 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔戊 (第5隊)</div>
+                    <div class="staff-desc">熱情滿點，用行動力感染身邊的每一個人。</div>
+                </div>
+                <!-- 第 6 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔己 (第6隊)</div>
+                    <div class="staff-desc">才華洋溢，喜歡用故事與學員建立連結。</div>
+                </div>
+                <!-- 第 7 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔庚 (第7隊)</div>
+                    <div class="staff-desc">沉穩內斂，是小隊裡最堅強的知識後盾。</div>
+                </div>
+                <!-- 第 8 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔辛 (第8隊)</div>
+                    <div class="staff-desc">創意無限，總是能激發出意想不到的點子。</div>
+                </div>
+                <!-- 第 9 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔壬 (第9隊)</div>
+                    <div class="staff-desc">善於傾聽，陪伴大家一起學習與成長。</div>
+                </div>
+                <!-- 第 10 隊 -->
+                <div class="staff-card">
+                    <div class="staff-name">👤 小輔癸 (第10隊)</div>
+                    <div class="staff-desc">活力充沛，用滿滿的正能量充實整個營期。</div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
     <div class="container">

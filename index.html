@@ -332,142 +332,14 @@
                         <div class="member-title">第 8 隊</div>
                         <div class="member-name">陳宜君</div>
                     </a>
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>教育部高級中等學校學生新世紀領導人才第24期進階培育營</title>
-    <style>
-        /* 全域風格：採用海報主色調（科技深藍） */
-        body { 
-            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif; 
-            margin: 0; 
-            background-color: #0b2545; 
-            color: #ffffff; 
-            text-align: center; 
-        }
-        
-        /* 頂部海報融合巨幕區 */
-        .hero-banner {
-            background: linear-gradient(135deg, #134074, #0b2545);
-            padding: 40px 20px;
-            border-bottom: 6px solid #e9c46a; /* 海報亮黃色飾條 */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+                </div> <!-- 結束 staff-grid (小隊輔網格) -->
+            </div> <!-- 結束小隊輔區塊 -->
 
-        /* 核心：海報圖片容器，完美融入網頁中央 */
-        .poster-wrapper {
-            max-width: 500px; /* 限制海報寬度，避免過大 */
-            width: 90%;
-            margin: 0 auto 20px auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 3px solid #ffffff;
-        }
+        </div> <!-- 結束 team-container (右側團隊介紹總容器) -->
+    </div> <!-- 結束 hero-banner (頂部海報與小隊輔大區塊) -->
 
-        .poster-wrapper img {
-            width: 100%;
-            display: block;
-        }
-
-        /* 網頁標題與海報文字呼應 */
-        .main-title {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #ffffff;
-            margin: 15px 0 5px 0;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .sub-title {
-            font-size: 1.2rem;
-            color: #f4a261; /* 海報橘色 */
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .date-tag {
-            background-color: #2a9d8f; /* 海報清新綠 */
-            color: white;
-            padding: 6px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        
-        /* 點選方塊容器 */
-        .container { 
-            max-width: 1000px; 
-            margin: 40px auto; 
-            padding: 0 20px; 
-        }
-        
-        /* 點選方塊 RWD 網格排版 */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 25px; 
-        }
-        
-        /* 點選方塊卡片樣式：乾淨白底，搭配海報黃色邊框 */
-        .card { 
-            background: #ffffff; 
-            border: 3px solid #e9c46a; 
-            border-radius: 16px; 
-            padding: 40px 20px; 
-            text-decoration: none; 
-            color: #0b2545; 
-            font-weight: bold; 
-            font-size: 1.3rem; 
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        
-        /* 滑鼠懸停動畫效果 */
-        .card:hover { 
-            transform: translateY(-6px); 
-            border-color: #f4a261; /* 懸停變橘色 */
-            color: #2a9d8f; /* 文字變綠色 */
-            box-shadow: 0 10px 20px rgba(244, 162, 97, 0.3);
-        }
-        
-        /* 頁尾資訊欄 */
-        footer { 
-            margin-top: 60px; 
-            padding: 30px 20px; 
-            font-size: 0.95rem; 
-            color: #edf2f4; 
-            background: #07192f; 
-            border-top: 4px solid #2a9d8f;
-            line-height: 1.8;
-        }
-        footer span {
-            color: #e9c46a;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- 頂部海報與標題融合區 -->
-    <div class="hero-banner">
-        <!-- 這裡會直接讀取你上傳的 poster.jpg -->
-        <div class="poster-wrapper">
-            <img src="poster.jpg" alt="第24期進階培育營海報">
-        </div>
-        <div class="sub-title">教育部 高級中等學校學生</div>
-        <h1 class="main-title">新世紀領導人才 第 24 期進階培育營</h1>
-        <div class="date-tag">📍 南區 ｜ 115.07.06 - 07.10</div>
-    </div>
-
+    <!-- 下半部：新增的七個功能鍵區塊 -->
     <div class="container">
-        <!-- 點選方塊區域 -->
         <div class="grid">
             <a href="rules.html" class="card">📜 營期規範</a>
             <a href="journal.html" class="card">📰 每日營刊</a>
@@ -479,6 +351,7 @@
         </div>
     </div>
 
+    <!-- 頁尾資訊欄 -->
     <footer>
         <p>【主辦單位】 教育部國民及學前教育署</p>
         <p>【承辦單位】 南區 - <span>國立竹山高級中學</span></p>

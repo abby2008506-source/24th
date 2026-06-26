@@ -21,7 +21,7 @@
             border-bottom: 6px solid #e9c46a; /* 海報亮黃色飾條 */
             display: flex;
             flex-direction: row;
-            align-items: center;
+            align-items: flex-start; /* 對齊頂部 */
             justify-content: center;
             gap: 40px;
             max-width: 1200px;
@@ -79,58 +79,96 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* 右側：小隊輔介紹區域 */
-        .staff-section {
-            flex: 1.2;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid #2a9d8f;
-            border-radius: 16px;
-            padding: 20px;
-            max-height: 550px; /* 限制高度，避免撐開網頁 */
-            overflow-y: auto; /* 超出高度時允許滾動 */
+        /* 右側：團隊介紹總容器 */
+        .team-container {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
             box-sizing: border-box;
         }
 
-        .staff-section h2 {
-            margin-top: 0;
+        /* 職稱大分類標題 */
+        .team-title {
             color: #e9c46a;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            text-align: left;
+            border-left: 5px solid #e9c46a;
+            padding-left: 10px;
             letter-spacing: 1px;
-            border-bottom: 2px dashed rgba(233, 196, 106, 0.3);
-            padding-bottom: 10px;
         }
 
-        /* 小隊輔卡片網格 */
+        /* 最上方：總召與副召區域（獨立並排） */
+        .leaders-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* 下方：8 個小隊輔網格 */
         .staff-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 15px;
-            text-align: left;
         }
 
-        /* 小隊輔個人卡片 */
-        .staff-card {
+        /* 個人卡片基本樣式：點擊可進入簡介頁 */
+        .profile-card {
             background: #ffffff;
             color: #0b2545;
+            text-decoration: none; /* 移除超連結底線 */
             padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        .staff-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #134074;
-            margin-bottom: 5px;
+        /* 滑鼠懸停卡片特效 */
+        .profile-card:hover {
+            transform: translateY(-5px);
+            border-color: #f4a261;
+            box-shadow: 0 8px 20px rgba(244, 162, 97, 0.4);
+        }
+
+        /* 照片容器 */
+        .avatar-box {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* 保持正方形 */
+            background-color: #e5e5e5; /* 未上傳照片時的預報灰色背景 */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            color: #777;
+            font-size: 0.85rem;
         }
 
-        .staff-desc {
-            font-size: 0.85rem;
-            color: #555;
-            line-height: 1.4;
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 照片自動裁切填滿 */
+        }
+
+        /* 職稱與名字樣式 */
+        .member-title {
+            font-size: 0.8rem;
+            color: #f4a261;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .member-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #0b2545;
         }
         
         /* 點選方塊容器 */
@@ -147,7 +185,7 @@
             gap: 25px; 
         }
         
-        /* 點選方塊卡片樣式：乾淨白底，搭配海報黃色邊框 */
+        /* 點選方塊卡片樣式 */
         .card { 
             background: #ffffff; 
             border: 3px solid #e9c46a; 
@@ -164,8 +202,8 @@
         /* 滑鼠懸停動畫效果 */
         .card:hover { 
             transform: translateY(-6px); 
-            border-color: #f4a261; /* 懸停變橘色 */
-            color: #2a9d8f; /* 文字變綠色 */
+            border-color: #f4a261; 
+            color: #2a9d8f; 
             box-shadow: 0 10px 20px rgba(244, 162, 97, 0.3);
         }
         
@@ -184,17 +222,17 @@
         }
 
         /* RWD 響應式：手機版改為上下堆疊 */
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
             .hero-banner {
                 flex-direction: column;
+                align-items: center;
                 gap: 30px;
             }
             .left-banner-content {
                 max-width: 90%;
             }
-            .staff-section {
-                width: 90%;
-                max-height: none; /* 手機版不限制高度，直接展開 */
+            .team-container {
+                width: 100%;
             }
         }
     </style>
@@ -214,84 +252,67 @@
             <div class="date-tag">📍 南區 ｜ 115.07.06 - 07.10</div>
         </div>
 
-        <!-- 右側：10 個小隊輔介紹 -->
-        <div class="staff-section">
-            <h2>⭐ 優秀小隊輔團隊 ⭐</h2>
-            <div class="staff-grid">
-                
-                <!-- 第 1 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔甲 (第1隊)</div>
-                    <div class="staff-desc">親切活力，專長是帶動氣氛與思辨引導。</div>
+        <!-- 右側：幹部與 8 個小隊輔 -->
+        <div class="team-container">
+            
+            <!-- 上方：總召與副召區 -->
+            <div>
+                <div class="team-title">營隊負責人</div>
+                <div class="leaders-row">
+                    <!-- 總召 -->
+                    <a href="leader1.html" class="profile-card">
+                        <div class="avatar-box">
+                            <!-- 請將 src 改為您的照片檔名，例如 leader1.jpg -->
+                            <img src="placeholder.jpg" alt="總召照片">
+                        </div>
+                        <div class="member-title">總召集人</div>
+                        <div class="member-name">陳大文</div>
+                    </a>
+                    <!-- 副召 -->
+                    <a href="leader2.html" class="profile-card">
+                        <div class="avatar-box">
+                            <img src="placeholder.jpg" alt="副召照片">
+                        </div>
+                        <div class="member-title">副召集人</div>
+                        <div class="member-name">林小明</div>
+                    </a>
                 </div>
-                <!-- 第 2 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔乙 (第2隊)</div>
-                    <div class="staff-desc">細心溫柔，隨時準備好解答大家的疑問。</div>
-                </div>
-                <!-- 第 3 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔丙 (第3隊)</div>
-                    <div class="staff-desc">幽默風趣，能用不同的視角看世界。</div>
-                </div>
-                <!-- 第 4 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔丁 (第4隊)</div>
-                    <div class="staff-desc">理性客觀，擅長邏輯分析與團隊協調。</div>
-                </div>
-                <!-- 第 5 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔戊 (第5隊)</div>
-                    <div class="staff-desc">熱情滿點，用行動力感染身邊的每一個人。</div>
-                </div>
-                <!-- 第 6 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔己 (第6隊)</div>
-                    <div class="staff-desc">才華洋溢，喜歡用故事與學員建立連結。</div>
-                </div>
-                <!-- 第 7 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔庚 (第7隊)</div>
-                    <div class="staff-desc">沉穩內斂，是小隊裡最堅強的知識後盾。</div>
-                </div>
-                <!-- 第 8 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔辛 (第8隊)</div>
-                    <div class="staff-desc">創意無限，總是能激發出意想不到的點子。</div>
-                </div>
-                <!-- 第 9 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔壬 (第9隊)</div>
-                    <div class="staff-desc">善於傾聽，陪伴大家一起學習與成長。</div>
-                </div>
-                <!-- 第 10 隊 -->
-                <div class="staff-card">
-                    <div class="staff-name">👤 小輔癸 (第10隊)</div>
-                    <div class="staff-desc">活力充沛，用滿滿的正能量充實整個營期。</div>
-                </div>
-
             </div>
-        </div>
 
-    </div>
-
-    <div class="container">
-        <!-- 點選方塊區域 -->
-        <div class="grid">
-            <a href="rules.html" class="card">📜 營期規範</a>
-            <a href="journal.html" class="card">📰 每日營刊</a>
-            <a href="mission.html" class="card">💡 思辨任務</a>
-            <a href="photos.html" class="card">📸 相片集錦</a>
-            <a href="teachers.html" class="card">💬 老師的話</a>
-            <a href="feedback.html" class="card">✏️ 回饋五四三</a>
-            <a href="forum.html" class="card">💬 觀點交流板</a>
-        </div>
-    </div>
-
-    <footer>
-        <p>【主辦單位】 教育部國民及學前教育署</p>
-        <p>【承辦單位】 南區 - <span>國立竹山高級中學</span></p>
-    </footer>
-
-</body>
-</html>
+            <!-- 下方：8 位小隊輔區 -->
+            <div>
+                <div class="team-title">小隊輔團隊</div>
+                <div class="staff-grid">
+                    
+                    <!-- 第 1 隊 -->
+                    <a href="staff1.html" class="profile-card">
+                        <div class="avatar-box"><img src="placeholder.jpg" alt="小輔1"></div>
+                        <div class="member-title">第 1 隊</div>
+                        <div class="member-name">小輔一</div>
+                    </a>
+                    <!-- 第 2 隊 -->
+                    <a href="staff2.html" class="profile-card">
+                        <div class="avatar-box"><img src="placeholder.jpg" alt="小輔2"></div>
+                        <div class="member-title">第 2 隊</div>
+                        <div class="member-name">小輔二</div>
+                    </a>
+                    <!-- 第 3 隊 -->
+                    <a href="staff3.html" class="profile-card">
+                        <div class="avatar-box"><img src="placeholder.jpg" alt="小輔3"></div>
+                        <div class="member-title">第 3 隊</div>
+                        <div class="member-name">小輔三</div>
+                    </a>
+                    <!-- 第 4 隊 -->
+                    <a href="staff4.html" class="profile-card">
+                        <div class="avatar-box"><img src="placeholder.jpg" alt="小輔4"></div>
+                        <div class="member-title">第 4 隊</div>
+                        <div class="member-name">小輔四</div>
+                    </a>
+                    <!-- 第 5 隊 -->
+                    <a href="staff5.html" class="profile-card">
+                        <div class="avatar-box"><img src="placeholder.jpg" alt="小輔5"></div>
+                        <div class="member-title">第 5 隊</div>
+                        <div class="member-name">小輔五</div>
+                    </a>
+                    <!-- 第 6 隊 -->
+                    <a href="staff6.html" class="profile-card">

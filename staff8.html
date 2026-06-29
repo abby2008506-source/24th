@@ -1,229 +1,203 @@
 <style>
-    /* 核心容器：承襲圖片中的深藍大外框 */
-    .intro-container {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 40px;
-        background-color: #0d233a; /* 科技深藍底色 */
-        border-radius: 16px;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    /* 1. 顏色滿版：確保深藍底色完美填滿整個瀏覽器，絕不留白邊 */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100vh;
+        background-color: #0b2545; /* 核心深藍 */
         font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
         color: #ffffff;
+    }
+
+    /* 網頁外大框：置中對齊 */
+    .profile-board {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 50px 20px;
         text-align: left;
     }
 
-    /* 頂部名稱與標籤卡片 */
-    .profile-header {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        margin-bottom: 30px;
-        border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
-        padding-bottom: 20px;
+    /* 頂部姓名區：移除大頭貼，改為大器、帶有左側裝飾條的現代風格 */
+    .hero-title-section {
+        border-left: 6px solid #e9c46a; /* 黃色亮點裝飾條 */
+        padding-left: 20px;
+        margin-bottom: 40px;
     }
 
-    .profile-avatar {
-        font-size: 3rem;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 15px;
-        border-radius: 50%;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    .hero-title-section h1 {
+        font-size: 2.4rem;
+        font-weight: 900;
+        margin: 0 0 8px 0;
+        letter-spacing: 1.5px;
     }
 
-    .profile-title-group {
-        flex-grow: 1;
-    }
-
-    .profile-name {
-        font-size: 2.2rem;
+    .hero-title-section h1 span {
+        color: #e9c46a; /* 亮黃色暱稱 */
+        font-size: 1.5rem;
         font-weight: bold;
+        margin-left: 12px;
+    }
+
+    .hero-subtitle {
+        color: #f4a261; /* 溫暖橘色系所 */
+        font-size: 1.15rem;
         margin: 0;
-        letter-spacing: 1px;
-    }
-
-    .profile-nickname {
-        color: #e9c46a; /* 亮黃色點綴 */
-        font-size: 1.4rem;
-        margin-left: 10px;
-    }
-
-    .profile-school {
-        color: #a0aec0;
-        font-size: 1.1rem;
-        margin: 5px 0 0 0;
-    }
-
-    /* 規則與特質卡片：承襲圖片中的半透明深色內框 */
-    .info-card {
-        background-color: rgba(0, 0, 0, 0.25);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 35px;
-    }
-
-    .card-section-title {
-        font-size: 1.3rem;
         font-weight: bold;
-        color: #ffffff;
-        margin-top: 0;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
     }
 
-    /* 條列式介紹風格 */
-    .info-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    /* 介紹卡片：不照抄前一版，改用俐落的邊框與微透底色區隔 */
+    .intro-data-card {
+        background-color: rgba(19, 64, 116, 0.3); /* 半透明科技藍 */
+        border: 2px solid rgba(233, 196, 106, 0.15); /* 淡淡的黃色邊框 */
+        border-radius: 14px;
+        padding: 35px;
+        margin-bottom: 40px;
     }
 
-    .info-list li {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        margin-bottom: 15px;
-        color: #e2e8f0;
+    /* 核心資料結構排版：純粹、乾淨、不花裡胡哨 */
+    .data-row {
         display: flex;
         align-items: flex-start;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 1.1rem;
+        line-height: 1.6;
     }
 
-    .info-list .num {
-        color: #e9c46a;
+    .data-row:last-child {
+        border-bottom: none; /* 最後一項移除底線 */
+    }
+
+    /* 左側固定寬度的標籤 */
+    .data-label {
+        min-width: 110px;
+        color: #e9c46a; /* 黃色粗體標籤 */
         font-weight: bold;
-        margin-right: 12px;
-        min-width: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
-    .highlight-text {
-        color: #2a9d8f; /* 清新綠關鍵字 */
-        font-weight: bold;
+    /* 右側純粹的文字內容 */
+    .data-content {
+        color: #ffffff;
+        flex: 1;
     }
 
-    /* 核心白色互動區塊 */
-    .action-zone {
+    /* 下方白色核心互動區塊：維持大按鈕發光感，但調整了間距與比例 */
+    .interactive-panel {
         background-color: #ffffff;
-        border-radius: 12px;
-        padding: 40px 20px;
+        border-radius: 14px;
+        padding: 45px 25px;
         text-align: center;
-        box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
-    /* 關鍵大按鈕：複製圖片中的橘紅漸層發光特效 */
-    .action-btn {
+    /* 核心大按鈕：維持漸層與橘紅發光特效 */
+    .glow-action-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        background: linear-gradient(135deg, #ff7e67, #ff5335); /* 活力橘紅漸層 */
+        gap: 12px;
+        background: linear-gradient(135deg, #ff7e67, #ff5335); /* 橘紅漸層 */
         color: #ffffff;
-        font-size: 1.3rem;
+        font-size: 1.25rem;
         font-weight: bold;
         text-decoration: none;
-        padding: 16px 40px;
-        border-radius: 30px;
-        box-shadow: 0 8px 25px rgba(255, 100, 80, 0.4); /* 橘紅色外發光 */
+        padding: 15px 45px;
+        border-radius: 50px;
+        box-shadow: 0 8px 25px rgba(255, 83, 53, 0.4); /* 核心外發光 */
         transition: transform 0.2s, box-shadow 0.2s;
-        cursor: pointer;
         border: none;
+        cursor: pointer;
     }
 
-    .action-btn:hover {
+    .glow-action-button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 30px rgba(255, 100, 80, 0.6);
+        box-shadow: 0 12px 30px rgba(255, 83, 53, 0.6);
     }
 
-    /* 按鈕下方的提示文字 */
-    .hint-text {
+    /* 提示文字 */
+    .panel-hint {
         color: #718096;
         font-size: 0.95rem;
-        margin-top: 15px;
+        margin-top: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
     }
 
-    /* 返回首頁按鈕 */
-    .back-btn-wrapper {
+    /* 返回按鈕區塊 */
+    .navigation-footer {
         text-align: center;
-        margin-top: 30px;
+        margin-top: 35px;
     }
 
-    .back-btn {
+    .minimal-back-link {
         display: inline-block;
-        background-color: #e9c46a; /* 亮黃色按鈕 */
-        color: #0b2545;
+        background-color: #2a9d8f; /* 改用清新綠作為返回鈕，與首頁按鈕做區隔 */
+        color: #ffffff;
         font-weight: bold;
         text-decoration: none;
-        padding: 10px 24px;
-        border-radius: 20px;
+        padding: 10px 28px;
+        border-radius: 30px;
         font-size: 0.95rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.2);
         transition: opacity 0.2s;
     }
 
-    .back-btn:hover {
+    .minimal-back-link:hover {
         opacity: 0.9;
     }
 </style>
 
 <!-- 網頁結構開始 -->
-<div class="intro-container">
+<div class="profile-board">
     
-    <!-- 頂部：人物基本資料 -->
-    <div class="profile-header">
-        <div class="profile-avatar">🍮</div>
-        <div class="profile-title-group">
-            <h1 class="profile-name">陳宜君<span class="profile-nickname">（布丁）</span></h1>
-            <p class="profile-school">淡江大學 英文系全英文學士班</p>
-        </div>
+    <!-- 頂部姓名與系所（無布丁圖示，大頭貼位置已移除） -->
+    <div class="hero-title-section">
+        <h1>陳宜君<span>（布丁）</span></h1>
+        <p class="hero-subtitle">淡江大學 英文系全英文學士班</p>
     </div>
 
-    <!-- 中段：特質與興趣卡片（對應發言守則區塊） -->
-    <div class="info-card">
-        <h2 class="card-section-title">
-            <span>📢</span> 個人基本簡介
-        </h2>
-        <ul class="info-list">
-            <li>
-                <span class="num">1.</span>
-                <div>
-                    擁有極具反差的個人特質：私底下帶點 <span class="highlight-text">ㄎㄧㄤ</span>、個性 <span class="highlight-text">大剌剌</span> 且非常 <span class="highlight-text">好相處</span>。
-                </div>
-            </li>
-            <li>
-                <span class="num">2.</span>
-                <div>
-                    日常興趣非常廣泛，熱愛在球場上奔跑、盡情歌唱與靜心畫圖，同時也是個喜歡鑽研的 <span class="highlight-text">神祕星座專家</span>。
-                </div>
-            </li>
-            <li>
-                <span class="num">3.</span>
-                <div>
-                    在團隊中除了能提供視覺與活動支援，還隨身內建一項隱藏優勢：<span class="highlight-text">腿特長（這絕對不是誤傳！）</span>。
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <!-- 下段：白色核心互動區塊（對應 Slido 點選區塊） -->
-    <div class="action-zone">
-        <!-- 點擊按鈕 -->
-        <a href="#" class="action-btn">
-            <span>🏀</span> 點此開啟 布丁的專長領域
-        </a>
+    <!-- 中段：介紹卡片（完全依照原始資料，不做任何詞彙潤飾，改用表格感排列） -->
+    <div class="intro-data-card">
         
-        <!-- 提示文字 -->
-        <div class="hint-text">
-            <span>💡</span> 提示：點擊後將自動解鎖籃球、唱歌與畫圖的精彩作品集
+        <!-- 項目 1 -->
+        <div class="data-row">
+            <div class="data-label">📌 人格特質</div>
+            <div class="data-content">ㄎㄧㄤ、大剌剌、好相處</div>
+        </div>
+
+        <!-- 項目 2 -->
+        <div class="data-row">
+            <div class="data-label">📌 興趣</div>
+            <div class="data-content">籃球、唱歌、畫圖、研究星座</div>
+        </div>
+
+        <!-- 項目 3 -->
+        <div class="data-row">
+            <div class="data-label">📌 專長</div>
+            <div class="data-content">腿特長（誤）籃球、唱歌、畫圖</div>
+        </div>
+
+    </div>
+
+    <!-- 下段：白色核心互動區塊 -->
+    <div class="interactive-panel">
+        <a href="#" class="glow-action-button">
+            🚀 點此開啟 布丁的專長領域
+        </a>
+        <div class="panel-hint">
+            💡 提示：點擊後會自動開啟新視窗跳轉至 Slido 互動專區
         </div>
     </div>
 
 </div>
 
-<!-- 返回首頁按鈕 -->
-<div class="back-btn-wrapper">
-    <a href="#" class="back-btn">← 返回首頁</a>
+<!-- 返回首頁 -->
+<div class="navigation-footer">
+    <a href="#" class="minimal-back-link">← 返回首頁</a>
 </div>

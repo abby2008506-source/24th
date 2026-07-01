@@ -18,12 +18,10 @@
             box-sizing: border-box;
             position: relative;
             overflow-x: hidden;
-            
-            /* 1. 將底色稍微提亮，改為帶有微弱漸層的高級深邃藍 */
             background: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%);
         }
 
-        /* 2. 幾何線條網格背景（消滅單調的神器） */
+        /* 幾何線條網格背景 */
         body::before {
             content: "";
             position: absolute;
@@ -34,12 +32,12 @@
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px; /* 方格的大小 */
+            background-size: 40px 40px;
             z-index: 1;
             pointer-events: none;
         }
 
-        /* 3. 背景左上角：金黃色發光氣泡 */
+        /* 背景發光氣泡 */
         .bg-glow-1 {
             position: absolute;
             top: -10%;
@@ -52,7 +50,6 @@
             pointer-events: none;
         }
 
-        /* 4. 背景右下角：極光青藍色發光氣泡 */
         .bg-glow-2 {
             position: absolute;
             bottom: -10%;
@@ -72,7 +69,7 @@
             padding: 40px 20px;
             box-sizing: border-box;
             position: relative;
-            z-index: 2; /* 確保內容在網格與發光層上方 */
+            z-index: 2;
         }
 
         /* 響應式雙欄布局 */
@@ -80,10 +77,35 @@
             display: grid;
             grid-template-columns: 1fr 1.6fr;
             gap: 50px;
-            align-items: center;
+            align-items: flex-start; /* 讓左側欄從頂部對齊開始排 */
         }
 
-        /* 左側標題 */
+        /* --- 左側：照片與標題的組合欄位 --- */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* 照片與下方文字的間距 */
+        }
+
+        /* 新增：照片外框設計 */
+        .avatar-container {
+            width: 100%;
+            max-width: 280px; /* 限制照片最大寬度 */
+            aspect-ratio: 1 / 1; /* 保持正方形，若要長方形可移除 */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 確保照片填滿且不變形 */
+            display: block;
+        }
+
+        /* 標題與文字介紹區塊 */
         .header-section {
             border-left: 6px solid #f39c12;
             padding-left: 24px;
@@ -112,18 +134,18 @@
             font-weight: 500;
         }
 
-        /* 右側資訊卡片組 */
+        /* --- 右側：資訊卡片組 --- */
         .cards-group {
             display: flex;
             flex-direction: column;
             gap: 24px;
         }
 
-        /* 單個獨立卡片：升級為透光磨砂玻璃 */
+        /* 單個獨立卡片 */
         .info-card {
-            background: rgba(23, 42, 69, 0.5); /* 半透明，讓背景網格微透出來 */
+            background: rgba(23, 42, 69, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px); /* 磨砂玻璃效果 */
+            backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 20px;
             padding: 26px 30px;
@@ -211,6 +233,21 @@
                 gap: 40px;
             }
 
+            /* 手機版照片與名字置中對齊 */
+            .left-column {
+                align-items: center;
+                text-align: center;
+            }
+
+            .avatar-container {
+                max-width: 200px; /* 手機版照片縮小一點 */
+            }
+
+            .header-section {
+                border-left: none; /* 手機版拿掉側邊直條改置中 */
+                padding-left: 0;
+            }
+
             .name-title {
                 font-size: 2.4rem;
             }
@@ -241,11 +278,19 @@
     <div class="wrapper">
         <div class="main-layout">
             
-            <!-- 左/上側：姓名與抬頭 -->
-            <header class="header-section">
-                <h1 class="name-title">陳宜君 <span>（布丁）</span></h1>
-                <p class="sub-title">淡江大學<br>英文系全英文學士班</p>
-            </header>
+            <!-- 左/上側：照片與標題組合欄位 -->
+            <div class="left-column">
+                <!-- 圖片區塊 -->
+                <div class="avatar-container">
+                    <img src="staff8.jpg" alt="陳宜君的個人照片">
+                </div>
+                
+                <!-- 姓名與抬頭 -->
+                <header class="header-section">
+                    <h1 class="name-title">陳宜君 <span>（布丁）</span></h1>
+                    <p class="sub-title">淡江大學<br>英文系全英文學士班</p>
+                </header>
+            </div>
 
             <!-- 右/下側：卡片區塊 -->
             <main class="cards-group">
@@ -274,7 +319,7 @@
 
         <!-- 返回按鈕 -->
         <footer class="button-section">
-            <a href="index.html" class="btn-back">← 返回首頁</a>
+            <a href="#" class="btn-back">← 返回首頁</a>
         </footer>
     </div>
 

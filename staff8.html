@@ -1,193 +1,201 @@
-<style>
-    /* 1. 顏色滿版：確保深藍底色完美填滿整個瀏覽器，絕不留白邊 */
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100vh;
-        background-color: #0b2545; /* 核心深藍 */
-        font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
-        color: #ffffff;
-    }
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陳宜君 (布丁) - 個人簡介</title>
+    <style>
+        /* 全域重設與背景設定 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: #0b1d3a; /* 保留原本的深藍底色 */
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    /* 網頁外大框：置中對齊 */
-    .profile-board {
-        max-width: 850px;
-        margin: 0 auto;
-        padding: 50px 20px;
-        text-align: left;
-    }
+        /* --- 新增的幾何色塊設計 --- */
+        body::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            clip-path: polygon(20% 0%, 100% 0%, 100% 80%, 0% 100%);
+            z-index: 1;
+            opacity: 0.6;
+        }
 
-    /* 頂部姓名區：移除大頭貼，改為大器、帶有左側裝飾條的現代風格 */
-    .hero-title-section {
-        border-left: 6px solid #e9c46a; /* 黃色亮點裝飾條 */
-        padding-left: 20px;
-        margin-bottom: 40px;
-    }
+        body::after {
+            content: "";
+            position: absolute;
+            bottom: -5%;
+            left: -5%;
+            width: 40vw;
+            height: 40vw;
+            background: linear-gradient(45deg, #11305e, #1a427a);
+            clip-path: cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            z-index: 1;
+            opacity: 0.5;
+        }
 
-    .hero-title-section h1 {
-        font-size: 2.4rem;
-        font-weight: 900;
-        margin: 0 0 8px 0;
-        letter-spacing: 1.5px;
-    }
+        /* 主要內容容器 */
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 40px auto;
+            position: relative;
+            z-index: 2; /* 確保內容在色塊上方 */
+        }
 
-    .hero-title-section h1 span {
-        color: #e9c46a; /* 亮黃色暱稱 */
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-left: 12px;
-    }
+        /* 頂部標題區塊 */
+        .header-section {
+            border-left: 6px solid #f39c12; /* 原本的金黃色直條 */
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
 
-    .hero-subtitle {
-        color: #f4a261; /* 溫暖橘色系所 */
-        font-size: 1.15rem;
-        margin: 0;
-        font-weight: bold;
-    }
+        .name-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
 
-    /* 介紹卡片：不照抄前一版，改用俐落的邊框與微透底色區隔 */
-    .intro-data-card {
-        background-color: rgba(19, 64, 116, 0.3); /* 半透明科技藍 */
-        border: 2px solid rgba(233, 196, 106, 0.15); /* 淡淡的黃色邊框 */
-        border-radius: 14px;
-        padding: 35px;
-        margin-bottom: 40px;
-    }
+        .name-title span {
+            font-size: 1.4rem;
+            color: #bdc3c7;
+            margin-left: 10px;
+        }
 
-    /* 核心資料結構排版：純粹、乾淨、不花裡胡哨 */
-    .data-row {
-        display: flex;
-        align-items: flex-start;
-        padding: 16px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        font-size: 1.1rem;
-        line-height: 1.6;
-    }
+        .sub-title {
+            font-size: 1.2rem;
+            color: #f39c12;
+            margin: 0;
+        }
 
-    .data-row:last-child {
-        border-bottom: none; /* 最後一項移除底線 */
-    }
+        /* 資訊卡片區塊（優化為微磨砂玻璃質感） */
+        .info-card {
+            background: rgba(14, 34, 61, 0.75); 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px); /* 讓背景色塊透上來時帶有模糊美感 */
+        }
 
-    /* 左側固定寬度的標籤 */
-    .data-label {
-        min-width: 110px;
-        color: #e9c46a; /* 黃色粗體標籤 */
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+        /* 列表項目樣式 */
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
 
-    /* 右側純粹的文字內容 */
-    .data-content {
-        color: #ffffff;
-        flex: 1;
-    }
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
 
-    /* 下方白色核心互動區塊：維持大按鈕發光感，但調整了間距與比例 */
-    .interactive-panel {
-        background-color: #ffffff;
-        border-radius: 14px;
-        padding: 45px 25px;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
+        /* 項目圖示與標籤 */
+        .item-label {
+            display: flex;
+            align-items: center;
+            min-width: 120px;
+            font-weight: bold;
+            color: #ffffff;
+        }
 
-    /* 核心大按鈕：維持漸層與橘紅發光特效 */
-    .glow-action-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        background: linear-gradient(135deg, #ff7e67, #ff5335); /* 橘紅漸層 */
-        color: #ffffff;
-        font-size: 1.25rem;
-        font-weight: bold;
-        text-decoration: none;
-        padding: 15px 45px;
-        border-radius: 50px;
-        box-shadow: 0 8px 25px rgba(255, 83, 53, 0.4); /* 核心外發光 */
-        transition: transform 0.2s, box-shadow 0.2s;
-        border: none;
-        cursor: pointer;
-    }
+        .item-icon {
+            color: #e74c3c; /* 紅色小圖示 */
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
 
-    .glow-action-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 30px rgba(255, 83, 53, 0.6);
-    }
+        /* 項目內容文字 */
+        .item-content {
+            color: #ecf0f1;
+            flex: 1;
+        }
 
-    /* 提示文字 */
-    .panel-hint {
-        color: #718096;
-        font-size: 0.95rem;
-        margin-top: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-    }
+        /* 底部按鈕區塊 */
+        .button-section {
+            text-align: center;
+            margin-top: 40px;
+        }
 
-    /* 返回按鈕區塊 */
-    .navigation-footer {
-        text-align: center;
-        margin-top: 35px;
-    }
+        .btn-back {
+            display: inline-block;
+            background-color: #16a085;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(22, 160, 133, 0.3);
+        }
 
-    .minimal-back-link {
-        display: inline-block;
-        background-color: #2a9d8f; /* 改用清新綠作為返回鈕，與首頁按鈕做區隔 */
-        color: #ffffff;
-        font-weight: bold;
-        text-decoration: none;
-        padding: 10px 28px;
-        border-radius: 30px;
-        font-size: 0.95rem;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-        transition: opacity 0.2s;
-    }
+        .btn-back:hover {
+            background-color: #1abc9c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 188, 156, 0.5);
+        }
+    </style>
+</head>
+<body>
 
-    .minimal-back-link:hover {
-        opacity: 0.9;
-    }
-</style>
+    <div class="container">
+        <!-- 頂部標題區塊 -->
+        <header class="header-section">
+            <h1 class="name-title">陳宜君 <span>（布丁）</span></h1>
+            <p class="sub-title">淡江大學 英文系全英文學士班</p>
+        </header>
 
-<!-- 網頁結構開始 -->
-<div class="profile-board">
-    
-    <!-- 頂部姓名與系所（無布丁圖示，大頭貼位置已移除） -->
-    <div class="hero-title-section">
-        <h1>陳宜君<span>（布丁）</span></h1>
-        <p class="hero-subtitle">淡江大學 英文系全英文學士班</p>
+        <!-- 資訊卡片區塊 -->
+        <main class="info-card">
+            <!-- 人格特質 -->
+            <div class="info-item">
+                <div class="item-label">
+                    <span class="item-icon">📌</span>
+                    <span>人格特質</span>
+                </div>
+                <div class="item-content">ㄅㄧㄤˋ、大剌剌、好相處</div>
+            </div>
+
+            <!-- 興趣 -->
+            <div class="info-item">
+                <div class="item-label">
+                    <span class="item-icon">📌</span>
+                    <span>興趣</span>
+                </div>
+                <div class="item-content">籃球、唱歌、畫畫、研究星座</div>
+            </div>
+
+            <!-- 專長 -->
+            <div class="info-item">
+                <div class="item-label">
+                    <span class="item-icon">📌</span>
+                    <span>專長</span>
+                </div>
+                <div class="item-content">腿特長（誤）、籃球、唱歌、畫畫</div>
+            </div>
+        </main>
+
+        <!-- 返回按鈕 -->
+        <footer class="button-section">
+            <a href="#" class="btn-back">← 返回首頁</a>
+        </footer>
     </div>
 
-    <!-- 中段：介紹卡片（完全依照原始資料，不做任何詞彙潤飾，改用表格感排列） -->
-    <div class="intro-data-card">
-        
-        <!-- 項目 1 -->
-        <div class="data-row">
-            <div class="data-label">📌 人格特質</div>
-            <div class="data-content">ㄎㄧㄤ、大剌剌、好相處</div>
-        </div>
-
-        <!-- 項目 2 -->
-        <div class="data-row">
-            <div class="data-label">📌 興趣</div>
-            <div class="data-content">籃球、唱歌、畫圖、研究星座</div>
-        </div>
-
-        <!-- 項目 3 -->
-        <div class="data-row">
-            <div class="data-label">📌 專長</div>
-            <div class="data-content">腿特長（誤）籃球、唱歌、畫圖</div>
-        </div>
-
-    </div>
-
-</div>
-
-<!-- 返回首頁 -->
-<div class="navigation-footer">
-    <a href="index.html" class="minimal-back-link">← 返回首頁</a>
-</div>
+</body>
+</html>

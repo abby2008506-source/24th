@@ -2,367 +2,317 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陳宜君 (布丁) - 個人簡介</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>陳宜君的個人簡介</title>
     <style>
-        /* --- 全域重設與升級版背景設計 --- */
-        body {
+        :root {
+            --bg-color: #0b1528;
+            --card-bg: rgba(20, 35, 65, 0.75);
+            --orange-primary: #ff7a00;
+            --orange-light: #ff9f43;
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: "SF Pro Display", "Helvetica Neue", "Segoe UI", "Microsoft JhengHei", sans-serif;
-            color: #ffffff;
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-sizing: border-box;
             position: relative;
-            overflow-x: hidden;
-            background: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%);
+            overflow-x: hidden; /* 防止手機版左右滑動破版 */
+            padding: 80px 20px 40px 20px; /* 留出頂部按鈕空間 */
         }
 
-        /* 幾何線條網格背景 */
-        body::before {
-            content: "";
+        /* 背景橘色方塊（已減量，僅保留點綴） */
+        .bg-decorations {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
             z-index: 1;
             pointer-events: none;
         }
 
-        /* 背景發光氣泡 */
-        .bg-glow-1 {
+        .cube {
             position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(243, 156, 18, 0.15) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(80px);
-            z-index: 1;
-            pointer-events: none;
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+            border-radius: 16px;
+            opacity: 0.12;
         }
 
-        .bg-glow-2 {
+        /* 僅保留兩個對角方塊，避免畫面太雜亂 */
+        .cube-1 { width: 140px; height: 140px; top: 8%; left: -40px; transform: rotate(15deg); }
+        .cube-2 { width: 220px; height: 220px; bottom: -60px; right: -40px; transform: rotate(35deg); opacity: 0.08; }
+
+        /* 回到首頁按鍵 */
+        .home-btn {
             position: absolute;
-            bottom: -10%;
-            right: -5%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(26, 188, 156, 0.18) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(100px);
-            z-index: 1;
-            pointer-events: none;
+            top: 25px;
+            left: 25px;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 122, 0, 0.4);
+            border-radius: 30px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        /* 主容器 */
-        .wrapper {
-            width: 100%;
-            max-width: 1100px;
-            padding: 40px 20px;
-            box-sizing: border-box;
+        .home-btn:hover {
+            background-color: var(--orange-primary);
+            border-color: var(--orange-primary);
+            box-shadow: 0 0 15px rgba(255, 122, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* 主容器佈局 */
+        .container {
             position: relative;
             z-index: 2;
-        }
-
-        /* 響應式雙欄布局：修改為 align-items: center 讓左右兩欄垂直置中 */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.6fr;
+            width: 100%;
+            max-width: 1050px;
+            display: flex;
+            flex-direction: row; /* 電腦版橫向排列 */
             gap: 50px;
-            align-items: center; /* ✨ 確保左右兩邊上下對齊居中 */
+            align-items: center;
+            justify-content: center;
         }
 
-        /* --- 左側：照片與標題的組合欄位 --- */
-        .left-column {
+        /* 左側：個人形象與基本資料 */
+        .profile-side {
+            flex: 0 0 280px; /* 固定寬度，防止壓縮 */
             display: flex;
             flex-direction: column;
-            gap: 20px; 
+            align-items: center;
+            text-align: center;
         }
 
-        /* 照片外框設計 */
-        .avatar-container {
+        .image-container {
             width: 100%;
-            max-width: 280px; 
-            aspect-ratio: 1 / 1; 
+            max-width: 260px;
+            aspect-ratio: 4 / 5; /* 鎖定照片比例，手機上不變形 */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 122, 0, 0.25);
+            background-color: #152238;
+            margin-bottom: 20px;
         }
 
-        .avatar-container img {
+        .profile-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; 
-            display: block;
+            object-fit: cover; /* 確保 staff8.jpg 自動裁剪不拉伸 */
         }
 
-        /* 新增：左側橘色幾何裝飾短線 */
-        .orange-divider {
-            width: 60px;
-            height: 4px;
-            background-color: #f39c12;
-            border-radius: 2px;
-            margin: 5px 0;
+        .profile-name {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            white-space: nowrap; /* 防止名字斷行 */
         }
 
-        /* 標題與文字介紹區塊 */
-        .header-section {
-            border-left: 6px solid #f39c12;
-            padding-left: 24px;
-        }
-
-        .name-title {
-            font-size: 3rem;
-            font-weight: 800;
-            margin: 0 0 15px 0;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .name-title span {
-            font-size: 1.6rem;
-            color: #a0aec0;
-            font-weight: 400;
-            margin-left: 8px;
-        }
-
-        .sub-title {
-            font-size: 1.3rem;
-            color: #f39c12;
-            margin: 0;
-            line-height: 1.6;
+        .profile-nickname {
+            font-size: 18px;
+            color: var(--orange-light);
             font-weight: 500;
+            margin-left: 5px;
         }
 
-        /* --- 右側：資訊卡片組 --- */
-        .cards-group {
+        .school-info {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* 右側：詳細內容卡片 */
+        .info-side {
+            flex: 1; /* 自動填滿剩餘空間 */
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 16px;
+            width: 100%;
         }
 
-        /* 單個獨立卡片 */
         .info-card {
-            background: rgba(23, 42, 69, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            padding: 26px 30px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 22px 25px;
+            border-left: 5px solid var(--orange-primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
             gap: 20px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
         }
 
-        /* 新增：卡片左側的亮橘色裝飾小方塊 */
-        .info-card::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 5px;
-            height: 40%;
-            background-color: #f39c12;
-            border-radius: 0 4px 4px 0;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-
-        /* 滑鼠懸停效果：優化為橘色系發光 */
-        .info-card:hover {
-            transform: translateY(-5px);
-            background: rgba(35, 58, 92, 0.6);
-            border-color: rgba(243, 156, 18, 0.5); /* 橘色邊框 */
-            box-shadow: 0 15px 35px rgba(243, 156, 18, 0.15); /* 橘色光暈 */
-        }
-
-        /* 懸停時讓橘色小方塊增長變亮 */
-        .info-card:hover::before {
-            height: 70%;
-            opacity: 1;
-            box-shadow: 0 0 10px #f39c12;
-        }
-
-        /* 卡片標籤 */
         .card-tag {
-            background: linear-gradient(135deg, #243b55, #141e30);
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1rem;
-            color: #f39c12;
-            white-space: nowrap;
-            box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(243, 156, 18, 0.2);
+            gap: 6px;
+            min-width: 100px;
+            color: var(--orange-light);
+            font-weight: 600;
+            font-size: 15px;
+            flex-shrink: 0; /* 防止標籤被文字擠壓變形 */
         }
 
-        .card-tag::before {
-            content: "⚡";
-            font-size: 0.9rem;
-        }
-
-        /* 卡片文字 */
-        .card-body {
-            font-size: 1.2rem;
+        .card-content {
+            font-size: 17px;
             color: #e2e8f0;
-            line-height: 1.6;
+            line-height: 1.5;
+            word-break: break-all; /* 防止長文字撐破手機版面 */
         }
 
-        /* 返回按鈕 */
-        .button-section {
-            text-align: center;
-            margin-top: 60px;
+        .wrong-text {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-decoration: line-through;
+            margin-right: 5px;
         }
 
-        .btn-back {
-            display: inline-block;
-            background: linear-gradient(135deg, #16a085, #1abc9c);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 14px 45px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(22, 160, 133, 0.3);
-        }
-
-        .btn-back:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(26, 188, 156, 0.5);
-        }
-
-        /* --- 響應式斷點設定（手機版優化） --- */
-        @media (max-width: 850px) {
+        /* 📱 關鍵手機版 RWD 完美防跑版設定 */
+        @media (max-width: 768px) {
             body {
-                align-items: flex-start;
-                padding: 30px 0;
+                padding: 90px 16px 30px 16px; /* 縮小手機版內邊距 */
             }
 
-            .wrapper {
-                padding: 20px;
+            .home-btn {
+                top: 20px;
+                left: 16px;
+                padding: 8px 14px;
+                font-size: 13px;
             }
 
-            .main-layout {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .container {
+                flex-direction: column; /* 手機版切換為「上下垂直排列」 */
+                gap: 30px;
             }
 
-            /* 手機版照片與名字置中對齊 */
-            .left-column {
-                align-items: center;
-                text-align: center;
+            .profile-side {
+                flex: none;
+                width: 100%; /* 手機版滿寬 */
             }
 
-            .avatar-container {
-                max-width: 200px; 
+            .image-container {
+                max-width: 220px; /* 手機上微調縮小照片，更符合螢幕比例 */
             }
 
-            .orange-divider {
-                margin: 10px auto; /* 手機版裝飾線置中 */
+            .profile-name {
+                font-size: 30px; /* 手機版名字稍微縮小防止溢出 */
             }
 
-            .header-section {
-                border-left: none; 
-                padding-left: 0;
-            }
-
-            .name-title {
-                font-size: 2.4rem;
+            .info-side {
+                gap: 12px;
             }
 
             .info-card {
-                flex-direction: column;
+                flex-direction: column; /* 卡片內部在手機上也改為上下排 */
                 align-items: flex-start;
-                gap: 15px;
-                padding: 22px;
+                gap: 8px;
+                padding: 16px 20px;
             }
 
-            .info-card::before {
-                left: 50%;
-                top: 0;
-                transform: translateX(-50%);
-                width: 40%;
-                height: 4px;
-                border-radius: 0 0 4px 4px;
+            .card-tag {
+                min-width: auto;
             }
 
-            .info-card:hover::before {
-                width: 60%;
-                height: 4px;
-            }
-
-            .card-body {
-                font-size: 1.1rem;
-            }
-
-            .info-card:hover {
-                transform: none;
+            .card-content {
+                font-size: 15px; /* 手機內文字級調整 */
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 背景光效元件 -->
-    <div class="bg-glow-1"></div>
-    <div class="bg-glow-2"></div>
+    <!-- 背景裝飾橘色方塊（已精簡至 2 個） -->
+    <div class="bg-decorations">
+        <div class="cube cube-1"></div>
+        <div class="cube cube-2"></div>
+    </div>
 
-    <div class="wrapper">
-        <div class="main-layout">
+    <!-- 回到首頁按鈕 -->
+    <a href="index.html" class="home-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        回到首頁
+    </a>
+
+    <!-- 主要內容區塊 -->
+    <div class="container">
+        
+        <!-- 左側基本資料 -->
+        <div class="profile-side">
+            <div class="image-container">
+                <img src="staff8.jpg" alt="陳宜君的個人照片" class="profile-img">
+            </div>
+            <div class="profile-name-box">
+                <h1 class="profile-name">陳宜君<span class="profile-nickname">（布丁）</span></h1>
+            </div>
+            <div class="school-info">
+                <p>淡江大學</p>
+                <p>英文學系全英文學士班</p>
+            </div>
+        </div>
+
+        <!-- 右側核心特質 -->
+        <div class="info-side">
             
-            <!-- 左/上側：照片與標題組合欄位 -->
-            <div class="left-column">
-                <!-- 圖片區塊 -->
-                <div class="avatar-container">
-                    <img src="staff8.jpg" alt="陳宜君的個人照片">
+            <!-- 人格特質 -->
+            <div class="info-card">
+                <div class="card-tag">
+                    <span>⚡</span>
+                    <span>人格特質</span>
                 </div>
-                
-                <!-- 新增的橘色幾何裝飾線 -->
-                <div class="orange-divider"></div>
-                
-                <!-- 姓名與抬頭 -->
-                <header class="header-section">
-                    <h1 class="name-title">陳宜君 <span>（布丁）</span></h1>
-                    <p class="sub-title">淡江大學<br>英文系全英文學士班</p>
-                </header>
+                <div class="card-content">
+                    ㄅ一ㄤˋ、大刺刺、好相處
+                </div>
             </div>
 
-            <!-- 右/下側：卡片區塊 -->
-            <main class="cards-group">
-                
-                <!-- 卡片 1 -->
-                <div class="info-card">
-                    <div class="card-tag">人格特質</div>
-                    <div class="card-body">ㄅㄧㄤˋ、大剌剌、好相處</div>
+            <!-- 個人興趣 -->
+            <div class="info-card">
+                <div class="card-tag">
+                    <span>✦</span>
+                    <span>個人興趣</span>
                 </div>
+                <div class="card-content">
+                    籃球、唱歌、畫畫、研究星座
+                </div>
+            </div>
 
-                <!-- 卡片 2 -->
-                <div class="info-card">
-                    <div class="card-tag">個人興趣</div>
-                    <div class="card-body">籃球、唱歌、畫畫、研究星座</div>
+            <!-- 專長技能 -->
+            <div class="info-card">
+                <div class="card-tag">
+                    <span>💪</span>
+                    <span>專長技能</span>
                 </div>
+                <div class="card-content">
+                    <span class="wrong-text">腿特長 (誤)</span> 籃球、唱歌、畫畫
+                </div>
+            </div>
 
-                <!-- 卡片 3 -->
-                <div class="info-card">
-                    <div class="card-tag">專長技能</div>
-                    <div class="card-body">腿特長（誤）、籃球、唱歌、畫畫</div>
-                </div>
+        </div>
+    </div>
+
+</body>
+</html>

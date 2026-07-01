@@ -8,7 +8,6 @@
         :root {
             --bg-color: #0b1528;
             --card-bg: rgba(20, 35, 65, 0.75);
-            /* 調配高飽和度的活力橘黃色系 */
             --orangey-yellow: #ff9100; 
             --orangey-yellow-bright: #ffa600;
             --text-main: #ffffff;
@@ -35,7 +34,7 @@
             padding: 60px 20px 80px 20px;
         }
 
-        /* 背景裝飾：全數改為高飽和度橘黃色方塊 */
+        /* 背景裝飾：高飽和度橘黃色方塊 */
         .bg-decorations {
             position: absolute;
             top: 0;
@@ -58,22 +57,21 @@
         .cube-2 { width: 250px; height: 250px; bottom: 8%; right: -50px; transform: rotate(35deg); }
         .cube-3 { width: 85px; height: 85px; top: 40%; left: 42%; transform: rotate(-20deg); opacity: 0.15; }
 
-        /* 主容器：維持 4:6 佔比，並向左側整體靠攏 */
+        /* 主容器：維持 4:6 佔比，擴大最大寬度，並增加間距讓左往中靠、右往右拉 */
         .container {
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1250px; /* 擴大最大寬度，拉開兩側距離 */
             display: grid;
             grid-template-columns: 4fr 6fr; 
-            gap: 40px; /* 縮小間距，讓整體結構往左靠攏 */
+            gap: 120px; /* 大幅增加間距，達成「左往中靠、右往右推」的效果 */
             align-items: center;
             margin-bottom: 50px;
-            margin-right: auto; /* 靠左排列，右側自然留空 */
-            padding-left: 20px; /* 左側保留適當內邊距 */
+            padding: 0 40px;
         }
 
-        /* 左側基本資料 */
+        /* 左側基本資料 (占比 40%) */
         .profile-side {
             width: 100%;
             display: flex;
@@ -82,7 +80,7 @@
             text-align: left;
         }
 
-        /* 正方形相片框：改為橘黃色邊框 */
+        /* 正方形相片框 */
         .image-container {
             width: 100%;
             max-width: 280px;
@@ -113,7 +111,7 @@
             font-size: 24px; 
             font-weight: 500;
             margin-left: 8px;
-            color: var(--orangey-yellow); /* 暱稱改為橘黃色 */
+            color: var(--orangey-yellow); 
         }
 
         .school-info {
@@ -123,7 +121,7 @@
             letter-spacing: 1px;
         }
 
-        /* 右側核心內容 */
+        /* 右側核心內容 (占比 60%) */
         .info-side {
             width: 100%;
             display: flex;
@@ -131,7 +129,7 @@
             gap: 20px;
         }
 
-        /* 卡片設計：改為橘黃色左側裝飾條 */
+        /* 卡片設計 */
         .info-card {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -150,7 +148,7 @@
             align-items: center;
             gap: 6px;
             min-width: 110px;
-            color: var(--orangey-yellow); /* 標籤文字改為橘黃色 */
+            color: var(--orangey-yellow); 
             font-weight: 600;
             font-size: 17px;
             flex-shrink: 0;
@@ -179,7 +177,7 @@
             gap: 10px;
             padding: 12px 28px;
             background-color: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 145, 0, 0.6); /* 按鈕框改為橘黃色 */
+            border: 2px solid rgba(255, 145, 0, 0.6); 
             border-radius: 30px;
             color: var(--text-main);
             text-decoration: none;
@@ -199,6 +197,12 @@
         }
 
         /* 📱 手機版 RWD 防跑版設定 */
+        @media (max-width: 992px) {
+            .container {
+                gap: 50px; /* 中等螢幕時自動縮小間距防止破版 */
+            }
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 40px 16px 60px 16px;
@@ -208,8 +212,7 @@
                 grid-template-columns: 1fr; 
                 gap: 40px;
                 margin-bottom: 40px;
-                margin-right: initial; /* 手機版還原置中 */
-                padding-left: 0;
+                padding: 0;
             }
 
             .profile-side {

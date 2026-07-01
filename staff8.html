@@ -72,26 +72,26 @@
             z-index: 2;
         }
 
-        /* 響應式雙欄布局 */
+        /* 響應式雙欄布局：修改為 align-items: center 讓左右兩欄垂直置中 */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr 1.6fr;
             gap: 50px;
-            align-items: flex-start; /* 讓左側欄從頂部對齊開始排 */
+            align-items: center; /* ✨ 確保左右兩邊上下對齊居中 */
         }
 
         /* --- 左側：照片與標題的組合欄位 --- */
         .left-column {
             display: flex;
             flex-direction: column;
-            gap: 25px; /* 照片與下方文字的間距 */
+            gap: 20px; 
         }
 
-        /* 新增：照片外框設計 */
+        /* 照片外框設計 */
         .avatar-container {
             width: 100%;
-            max-width: 280px; /* 限制照片最大寬度 */
-            aspect-ratio: 1 / 1; /* 保持正方形，若要長方形可移除 */
+            max-width: 280px; 
+            aspect-ratio: 1 / 1; 
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
@@ -101,8 +101,17 @@
         .avatar-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 確保照片填滿且不變形 */
+            object-fit: cover; 
             display: block;
+        }
+
+        /* 新增：左側橘色幾何裝飾短線 */
+        .orange-divider {
+            width: 60px;
+            height: 4px;
+            background-color: #f39c12;
+            border-radius: 2px;
+            margin: 5px 0;
         }
 
         /* 標題與文字介紹區塊 */
@@ -151,17 +160,41 @@
             padding: 26px 30px;
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* 滑鼠懸停效果 */
+        /* 新增：卡片左側的亮橘色裝飾小方塊 */
+        .info-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 40%;
+            background-color: #f39c12;
+            border-radius: 0 4px 4px 0;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        /* 滑鼠懸停效果：優化為橘色系發光 */
         .info-card:hover {
             transform: translateY(-5px);
-            background: rgba(28, 54, 88, 0.7);
-            border-color: rgba(243, 156, 18, 0.4);
-            box-shadow: 0 20px 40px rgba(243, 156, 18, 0.12);
+            background: rgba(35, 58, 92, 0.6);
+            border-color: rgba(243, 156, 18, 0.5); /* 橘色邊框 */
+            box-shadow: 0 15px 35px rgba(243, 156, 18, 0.15); /* 橘色光暈 */
+        }
+
+        /* 懸停時讓橘色小方塊增長變亮 */
+        .info-card:hover::before {
+            height: 70%;
+            opacity: 1;
+            box-shadow: 0 0 10px #f39c12;
         }
 
         /* 卡片標籤 */
@@ -240,11 +273,15 @@
             }
 
             .avatar-container {
-                max-width: 200px; /* 手機版照片縮小一點 */
+                max-width: 200px; 
+            }
+
+            .orange-divider {
+                margin: 10px auto; /* 手機版裝飾線置中 */
             }
 
             .header-section {
-                border-left: none; /* 手機版拿掉側邊直條改置中 */
+                border-left: none; 
                 padding-left: 0;
             }
 
@@ -257,6 +294,20 @@
                 align-items: flex-start;
                 gap: 15px;
                 padding: 22px;
+            }
+
+            .info-card::before {
+                left: 50%;
+                top: 0;
+                transform: translateX(-50%);
+                width: 40%;
+                height: 4px;
+                border-radius: 0 0 4px 4px;
+            }
+
+            .info-card:hover::before {
+                width: 60%;
+                height: 4px;
             }
 
             .card-body {
@@ -285,6 +336,9 @@
                     <img src="staff8.jpg" alt="陳宜君的個人照片">
                 </div>
                 
+                <!-- 新增的橘色幾何裝飾線 -->
+                <div class="orange-divider"></div>
+                
                 <!-- 姓名與抬頭 -->
                 <header class="header-section">
                     <h1 class="name-title">陳宜君 <span>（布丁）</span></h1>
@@ -312,16 +366,3 @@
                     <div class="card-tag">專長技能</div>
                     <div class="card-body">腿特長（誤）、籃球、唱歌、畫畫</div>
                 </div>
-
-            </main>
-
-        </div>
-
-        <!-- 返回按鈕 -->
-        <footer class="button-section">
-            <a href="#" class="btn-back">← 返回首頁</a>
-        </footer>
-    </div>
-
-</body>
-</html>

@@ -8,8 +8,9 @@
         :root {
             --bg-color: #0b1528;
             --card-bg: rgba(20, 35, 65, 0.75);
-            --orange-bright: #ff6a00; 
-            --orange-neon: #ffa500;
+            /* 高飽和度的鮮明黃色與金黃色 */
+            --yellow-bright: #ffea00; 
+            --yellow-gold: #ffb700;
             --text-main: #ffffff;
             --text-muted: #cbd5e1;
         }
@@ -26,15 +27,15 @@
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
-            flex-direction: column; /* 讓主內容與下方的按鈕由上至下排列 */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             overflow-x: hidden;
-            padding: 60px 20px 80px 20px; /* 留出底部空間給按鈕 */
+            padding: 60px 20px 80px 20px;
         }
 
-        /* 經典高飽和度橘色背景方塊 */
+        /* 背景裝飾：高飽和度黃色方塊 */
         .bg-decorations {
             position: absolute;
             top: 0;
@@ -47,30 +48,31 @@
 
         .cube {
             position: absolute;
-            background: linear-gradient(135deg, var(--orange-bright), var(--orange-neon));
+            background: linear-gradient(135deg, var(--yellow-bright), var(--yellow-gold));
             border-radius: 20px;
-            opacity: 0.22; 
-            filter: drop-shadow(0 0 20px rgba(255, 106, 0, 0.3));
+            /* 提高不透明度至 0.28，讓高飽和黃色非常搶眼 */
+            opacity: 0.28; 
+            filter: drop-shadow(0 0 25px rgba(255, 234, 0, 0.4));
         }
 
-        .cube-1 { width: 150px; height: 150px; top: 10%; left: -40px; transform: rotate(15deg); }
-        .cube-2 { width: 260px; height: 260px; bottom: 10%; right: -60px; transform: rotate(35deg); }
-        .cube-3 { width: 90px; height: 90px; top: 45%; left: 45%; transform: rotate(-20deg); opacity: 0.12; }
+        .cube-1 { width: 140px; height: 140px; top: 12%; left: -40px; transform: rotate(15deg); }
+        .cube-2 { width: 250px; height: 250px; bottom: 8%; right: -50px; transform: rotate(35deg); }
+        .cube-3 { width: 85px; height: 85px; top: 40%; left: 42%; transform: rotate(-20deg); opacity: 0.15; }
 
-        /* 主容器：左右占比各一半 (50% / 50%) */
+        /* 主容器：左右占比精準設定為 4:6 */
         .container {
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1150px;
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 等寬兩欄 */
-            gap: 60px;
+            grid-template-columns: 4fr 6fr; /* 4:6 比例 */
+            gap: 50px;
             align-items: center;
-            margin-bottom: 50px; /* 與下方按鈕保持距離 */
+            margin-bottom: 50px;
         }
 
-        /* 左側：個人形象與基本資料（靠左） */
+        /* 左側基本資料 (占比 40%) */
         .profile-side {
             width: 100%;
             display: flex;
@@ -79,15 +81,15 @@
             text-align: left;
         }
 
-        /* 1:1 絕對正方形照片外框 */
+        /* 正方形相片框 */
         .image-container {
             width: 100%;
-            max-width: 300px;
-            aspect-ratio: 1 / 1; /* 強制正方形 */
+            max-width: 280px;
+            aspect-ratio: 1 / 1; 
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border: 3px solid var(--orange-bright);
+            border: 3px solid var(--yellow-gold);
             background-color: #152238;
             margin-bottom: 30px;
         }
@@ -98,7 +100,6 @@
             object-fit: cover;
         }
 
-        /* 巨大化姓名 */
         .profile-name {
             font-size: 46px; 
             font-weight: 700;
@@ -111,10 +112,9 @@
             font-size: 24px; 
             font-weight: 500;
             margin-left: 8px;
-            color: #ff9f43;
+            color: var(--yellow-gold);
         }
 
-        /* 學校資訊 */
         .school-info {
             font-size: 20px; 
             color: var(--text-muted);
@@ -122,12 +122,12 @@
             letter-spacing: 1px;
         }
 
-        /* 右側：內容卡片區塊 */
+        /* 右側核心內容 (占比 60%) */
         .info-side {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 22px;
+            gap: 20px;
         }
 
         .info-card {
@@ -135,8 +135,8 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 18px;
-            padding: 26px 30px;
-            border-left: 6px solid var(--orange-bright);
+            padding: 24px 30px;
+            border-left: 6px solid var(--yellow-gold);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
@@ -148,28 +148,28 @@
             align-items: center;
             gap: 6px;
             min-width: 110px;
-            color: #ff9f43;
+            color: var(--yellow-gold);
             font-weight: 600;
-            font-size: 18px; /* 標籤放大 */
+            font-size: 17px;
             flex-shrink: 0;
         }
 
-        /* 大字重，但確保不超過名字的 46px */
+        /* 右邊字級微調縮小，保持精緻平衡 */
         .card-content {
-            font-size: 32px; 
+            font-size: 22px; 
             color: #ffffff;
-            line-height: 1.4;
+            line-height: 1.5;
             font-weight: 500;
             word-break: break-all;
         }
 
-        /* 正下方回到首頁按鍵（含向左箭頭） */
+        /* 正下方返回首頁按鍵區塊 */
         .home-btn-container {
             position: relative;
             z-index: 2;
             width: 100%;
             display: flex;
-            justify-content: center; /* 居中對齊 */
+            justify-content: center; 
         }
 
         .home-btn {
@@ -178,7 +178,7 @@
             gap: 10px;
             padding: 12px 28px;
             background-color: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 106, 0, 0.6);
+            border: 2px solid rgba(255, 183, 0, 0.6);
             border-radius: 30px;
             color: var(--text-main);
             text-decoration: none;
@@ -190,20 +190,21 @@
         }
 
         .home-btn:hover {
-            background-color: var(--orange-bright);
-            border-color: var(--orange-bright);
-            box-shadow: 0 0 20px rgba(255, 106, 0, 0.6);
+            background-color: var(--yellow-gold);
+            border-color: var(--yellow-gold);
+            color: #0b1528; /* 滑鼠懸停時文字變深色，對比度更好 */
+            box-shadow: 0 0 20px rgba(255, 183, 0, 0.6);
             transform: translateY(-3px);
         }
 
-        /* 📱 手機版 RWD 完美防跑版設定 */
+        /* 📱 手機版 RWD 防跑版設定 */
         @media (max-width: 768px) {
             body {
                 padding: 40px 16px 60px 16px;
             }
 
             .container {
-                grid-template-columns: 1fr; /* 手機上自動切換為一欄上下排 */
+                grid-template-columns: 1fr; /* 手機上自動還原為垂直一欄，防止排版擠壓 */
                 gap: 40px;
                 margin-bottom: 40px;
             }
@@ -214,7 +215,7 @@
             }
 
             .image-container {
-                max-width: 240px; /* 手機上縮小正方形尺寸 */
+                max-width: 220px; 
             }
 
             .profile-name { font-size: 36px; }
@@ -229,9 +230,7 @@
             }
 
             .card-tag { min-width: auto; font-size: 16px; }
-            
-            /* 手機板內文適度縮小，避免在窄螢幕撐爆 */
-            .card-content { font-size: 22px; } 
+            .card-content { font-size: 18px; } /* 手機上字級微調 */
             
             .home-btn {
                 padding: 10px 22px;
@@ -242,7 +241,7 @@
 </head>
 <body>
 
-    <!-- 背景裝飾：顯眼的高飽和橘色方塊組 -->
+    <!-- 背景裝飾：高飽和度黃色方塊組 -->
     <div class="bg-decorations">
         <div class="cube cube-1"></div>
         <div class="cube cube-2"></div>
@@ -252,7 +251,7 @@
     <!-- 主要內容區塊 -->
     <div class="container">
         
-        <!-- 左側基本資料 (占比 50%，置左) -->
+        <!-- 左側基本資料 (占比 40%) -->
         <div class="profile-side">
             <div class="image-container">
                 <img src="staff8.jpg" alt="陳宜君的個人照片" class="profile-img">
@@ -264,7 +263,7 @@
             </div>
         </div>
 
-        <!-- 右側核心特質 (專屬大字級，占比 50%) -->
+        <!-- 右側核心特質 (占比 60%) -->
         <div class="info-side">
             
             <!-- 人格特質 -->
@@ -303,7 +302,7 @@
         </div>
     </div>
 
-    <!-- 正下方的回到首頁按鈕（包含向左箭頭） -->
+    <!-- 正下方的返回首頁按鈕（包含向左箭頭） -->
     <div class="home-btn-container">
         <a href="index.html" class="home-btn">
             <!-- 向左的箭頭 SVG 圖標 -->
@@ -311,7 +310,7 @@
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            回到首頁
+            返回首頁
         </a>
     </div>
 

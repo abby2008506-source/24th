@@ -8,10 +8,10 @@
         :root {
             --bg-color: #0b1528;
             --card-bg: rgba(20, 35, 65, 0.75);
-            --orange-primary: #ff7a00;
-            --orange-light: #ff9f43;
+            /* 提高飽和度後的鮮明橘色 */
+            --orange-bright: #ff6a00; 
+            --orange-neon: #ffa500;
             --text-main: #ffffff;
-            --text-muted: #a0aec0;
         }
 
         * {
@@ -29,11 +29,11 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            overflow-x: hidden; /* 防止手機版左右滑動破版 */
-            padding: 80px 20px 40px 20px; /* 留出頂部按鈕空間 */
+            overflow-x: hidden;
+            padding: 90px 20px 40px 20px;
         }
 
-        /* 背景橘色方塊（已減量，僅保留點綴） */
+        /* 高飽和度橘色背景方塊 */
         .bg-decorations {
             position: absolute;
             top: 0;
@@ -46,14 +46,15 @@
 
         .cube {
             position: absolute;
-            background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+            background: linear-gradient(135deg, var(--orange-bright), var(--orange-neon));
             border-radius: 16px;
-            opacity: 0.12;
+            /* 提高不透明度，讓飽和度更明顯 */
+            opacity: 0.25; 
+            filter: drop-shadow(0 0 15px rgba(255, 106, 0, 0.3));
         }
 
-        /* 僅保留兩個對角方塊，避免畫面太雜亂 */
-        .cube-1 { width: 140px; height: 140px; top: 8%; left: -40px; transform: rotate(15deg); }
-        .cube-2 { width: 220px; height: 220px; bottom: -60px; right: -40px; transform: rotate(35deg); opacity: 0.08; }
+        .cube-1 { width: 130px; height: 130px; top: 10%; left: -30px; transform: rotate(15deg); }
+        .cube-2 { width: 200px; height: 200px; bottom: -50px; right: -30px; transform: rotate(35deg); opacity: 0.18; }
 
         /* 回到首頁按鍵 */
         .home-btn {
@@ -66,7 +67,7 @@
             gap: 8px;
             padding: 10px 18px;
             background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 122, 0, 0.4);
+            border: 1px solid rgba(255, 106, 0, 0.5);
             border-radius: 30px;
             color: var(--text-main);
             text-decoration: none;
@@ -78,9 +79,9 @@
         }
 
         .home-btn:hover {
-            background-color: var(--orange-primary);
-            border-color: var(--orange-primary);
-            box-shadow: 0 0 15px rgba(255, 122, 0, 0.4);
+            background-color: var(--orange-bright);
+            border-color: var(--orange-bright);
+            box-shadow: 0 0 15px rgba(255, 106, 0, 0.5);
             transform: translateY(-2px);
         }
 
@@ -89,68 +90,72 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 1050px;
+            max-width: 1100px;
             display: flex;
-            flex-direction: row; /* 電腦版橫向排列 */
+            flex-direction: row;
             gap: 50px;
             align-items: center;
             justify-content: center;
         }
 
-        /* 左側：個人形象與基本資料 */
+        /* 左側：個人形象與基本資料（靠左對齊與放大） */
         .profile-side {
-            flex: 0 0 280px; /* 固定寬度，防止壓縮 */
+            flex: 0 0 320px; /* 增加寬度以容納放大的文字 */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start; /* 名字學校完全置左對齊 */
+            text-align: left; /* 文字靠左 */
         }
 
         .image-container {
             width: 100%;
             max-width: 260px;
-            aspect-ratio: 4 / 5; /* 鎖定照片比例，手機上不變形 */
+            aspect-ratio: 4 / 5;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 122, 0, 0.25);
+            border: 2px solid rgba(255, 106, 0, 0.3);
             background-color: #152238;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .profile-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 確保 staff8.jpg 自動裁剪不拉伸 */
+            object-fit: cover;
         }
 
+        /* 放大姓名區塊 */
         .profile-name {
-            font-size: 36px;
+            font-size: 46px; /* 明顯放大 */
             font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-            white-space: nowrap; /* 防止名字斷行 */
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            color: #ffffff;
+            line-height: 1.2;
         }
 
         .profile-nickname {
-            font-size: 18px;
-            color: var(--orange-light);
+            font-size: 24px; /* 暱稱同步放大 */
             font-weight: 500;
-            margin-left: 5px;
+            margin-left: 8px;
+            color: #ff9f43;
         }
 
+        /* 放大學校資訊區塊 */
         .school-info {
-            font-size: 15px;
-            color: var(--text-muted);
-            line-height: 1.5;
+            font-size: 20px; /* 明顯放大 */
+            color: #cbd5e1;
+            line-height: 1.6;
+            letter-spacing: 1px;
         }
 
         /* 右側：詳細內容卡片 */
         .info-side {
-            flex: 1; /* 自動填滿剩餘空間 */
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 18px;
             width: 100%;
         }
 
@@ -159,12 +164,12 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 16px;
-            padding: 22px 25px;
-            border-left: 5px solid var(--orange-primary);
+            padding: 24px 28px;
+            border-left: 5px solid var(--orange-bright);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
         .card-tag {
@@ -172,66 +177,58 @@
             align-items: center;
             gap: 6px;
             min-width: 100px;
-            color: var(--orange-light);
+            color: #ff9f43;
             font-weight: 600;
-            font-size: 15px;
-            flex-shrink: 0; /* 防止標籤被文字擠壓變形 */
+            font-size: 16px;
+            flex-shrink: 0;
         }
 
         .card-content {
-            font-size: 17px;
-            color: #e2e8f0;
+            font-size: 18px;
+            color: #ffffff;
             line-height: 1.5;
-            word-break: break-all; /* 防止長文字撐破手機版面 */
+            word-break: break-all;
         }
 
-        .wrong-text {
-            color: var(--text-muted);
-            font-size: 14px;
-            text-decoration: line-through;
-            margin-right: 5px;
-        }
-
-        /* 📱 關鍵手機版 RWD 完美防跑版設定 */
+        /* 📱 手機版 RWD 完美防跑版設定 */
         @media (max-width: 768px) {
             body {
-                padding: 90px 16px 30px 16px; /* 縮小手機版內邊距 */
-            }
-
-            .home-btn {
-                top: 20px;
-                left: 16px;
-                padding: 8px 14px;
-                font-size: 13px;
+                padding: 90px 16px 30px 16px;
             }
 
             .container {
-                flex-direction: column; /* 手機版切換為「上下垂直排列」 */
-                gap: 30px;
+                flex-direction: column; /* 手機版自動切換上下排列 */
+                gap: 35px;
             }
 
             .profile-side {
                 flex: none;
-                width: 100%; /* 手機版滿寬 */
+                width: 100%;
+                align-items: center; /* 手機版置中視覺較平衡，若堅持靠左可改為 flex-start */
+                text-align: center;
             }
 
             .image-container {
-                max-width: 220px; /* 手機上微調縮小照片，更符合螢幕比例 */
+                max-width: 220px;
             }
 
             .profile-name {
-                font-size: 30px; /* 手機版名字稍微縮小防止溢出 */
+                font-size: 36px; /* 手機版適度縮小防止擠壓 */
             }
 
-            .info-side {
-                gap: 12px;
+            .profile-nickname {
+                font-size: 20px;
+            }
+
+            .school-info {
+                font-size: 18px;
             }
 
             .info-card {
-                flex-direction: column; /* 卡片內部在手機上也改為上下排 */
+                flex-direction: column;
                 align-items: flex-start;
                 gap: 8px;
-                padding: 16px 20px;
+                padding: 18px 20px;
             }
 
             .card-tag {
@@ -239,14 +236,14 @@
             }
 
             .card-content {
-                font-size: 15px; /* 手機內文字級調整 */
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 背景裝飾橘色方塊（已精簡至 2 個） -->
+    <!-- 背景裝飾：高飽和度橘色方塊 -->
     <div class="bg-decorations">
         <div class="cube cube-1"></div>
         <div class="cube cube-2"></div>
@@ -261,21 +258,19 @@
     <!-- 主要內容區塊 -->
     <div class="container">
         
-        <!-- 左側基本資料 -->
+        <!-- 左側基本資料（已放大並靠左對齊） -->
         <div class="profile-side">
             <div class="image-container">
                 <img src="staff8.jpg" alt="陳宜君的個人照片" class="profile-img">
             </div>
-            <div class="profile-name-box">
-                <h1 class="profile-name">陳宜君<span class="profile-nickname">（布丁）</span></h1>
-            </div>
+            <h1 class="profile-name">陳宜君<span class="profile-nickname">（布丁）</span></h1>
             <div class="school-info">
                 <p>淡江大學</p>
                 <p>英文學系全英文學士班</p>
             </div>
         </div>
 
-        <!-- 右側核心特質 -->
+        <!-- 右側核心特質（文字保持原始內容與顏色） -->
         <div class="info-side">
             
             <!-- 人格特質 -->
@@ -307,7 +302,7 @@
                     <span>專長技能</span>
                 </div>
                 <div class="card-content">
-                    <span class="wrong-text">腿特長 (誤)</span> 籃球、唱歌、畫畫
+                    腿特長(誤) 籃球、唱歌、畫畫
                 </div>
             </div>
 

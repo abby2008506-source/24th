@@ -1,1 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>梁靖苓的個人簡介</title>
+    <style>
+        :root {
+            --bg-color: #0b1528;
+            --card-bg: rgba(20, 35, 65, 0.75);
+            /* 高飽和度的活力橘黃色系 */
+            --orangey-yellow: #ff9100; 
+            --orangey-yellow-bright: #ffa600;
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 60px 20px 80px 20px;
+        }
+
+        /* 背景裝飾：高飽和度橘黃色幾何方塊 */
+        .bg-decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cube {
+            position: absolute;
+            background: linear-gradient(135deg, var(--orangey-yellow), var(--orangey-yellow-bright));
+            border-radius: 20px;
+            opacity: 0.28; 
+            filter: drop-shadow(0 0 25px rgba(255, 145, 0, 0.4));
+        }
+
+        .cube-1 { width: 140px; height: 140px; top: 12%; left: -40px; transform: rotate(15deg); }
+        .cube-2 { width: 250px; height: 250px; bottom: 8%; right: -50px; transform: rotate(35deg); }
+        .cube-3 { width: 85px; height: 85px; top: 40%; left: 42%; transform: rotate(-20deg); opacity: 0.15; }
+
+        /* 主容器：維持寬廣佈局與 4:6 佔比 */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1250px; 
+            display: grid;
+            grid-template-columns: 4fr 6fr; 
+            gap: 70px; /* 控制左側與右側卡片的貼近距離 */
+            align-items: center;
+            margin-bottom: 50px;
+            padding: 0 40px;
+        }
+
+        /* 左側基本資料：加入自動左邊距，將區塊精準向右推至紅線處（畫面中間） */
+        .profile-side {
+            width: 100%;
+            max-width: 320px; /* 限制左側最大寬度，避免左側文字過度延展 */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            text-align: left;
+            margin-left: auto; /* ✨ 關鍵修改：負責將左側推到畫面中間紅線位置 */
+        }
+
+        /* 正方形相片框：橘黃色高飽和度邊框 */
+        .image-container {
+            width: 100%;
+            aspect-ratio: 1 / 1; 
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--orangey-yellow);
+            background-color: #152238;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 46px; 
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .profile-nickname {
+            font-size: 24px; 
+            font-weight: 500;
+            margin-left: 8px;
+            color: var(--orangey-yellow); 
+        }
+
+        .school-info {
+            font-size: 20px; 
+            color: var(--text-muted);
+            line-height: 1.6;
+            letter-spacing: 1px;
+        }
+
+        /* 右側核心內容 (占比 60%) */
+        .info-side {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* 卡片設計：橘黃色左側裝飾條 */
+        .info-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 24px 30px;
+            border-left: 6px solid var(--orangey-yellow);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .card-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 110px;
+            color: var(--orangey-yellow); 
+            font-weight: 600;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        /* 右側精緻字級 */
+        .card-content {
+            font-size: 22px; 
+            color: #ffffff;
+            line-height: 1.5;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        /* 正下方返回首頁按鍵區塊 */
+        .home-btn-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: center; 
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 145, 0, 0.6); 
+            border-radius: 30px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .home-btn:hover {
+            background-color: var(--orangey-yellow);
+            border-color: var(--orangey-yellow);
+            color: #0b1528; 
+            box-shadow: 0 0 20px rgba(255, 145, 0, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* 📱 手機版 RWD 防跑版設定 */
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 16px 60px 16px;
+            }
+
+            .container {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+                margin-bottom: 40px;
+                padding: 0;
+            }
+
+            .profile-side {
+                align-items: center; 
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto; /* 手機版居中平衡 */
+            }
+
+            .image-container {
+                max-width: 220px; 
+            }
+
+            .profile-name { font-size: 36px; }
+            .profile-nickname { font-size: 20px; }
+            .school-info { font-size: 18px; }
+
+            .info-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 20px;
+            }
+
+            .card-tag { min-width: auto; font-size: 16px; }
+            .card-content { font-size: 18px; } 
+            
+            .home-btn {
+                padding: 10px 22px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景裝飾：高飽和度橘黃色方塊組 -->
+    <div class="bg-decorations">
+        <div class="cube cube-1"></div>
+        <div class="cube cube-2"></div>
+        <div class="cube cube-3"></div>
+    </div>
+
+    <!-- 主要內容區塊 -->
+    <div class="container">
+        
+        <!-- 左側基本資料 (占比 40%，靠中間) -->
+        <div class="profile-side">
+            <div class="image-container">
+                <img src="staff4.jpg" alt="梁靖苓的個人照片" class="profile-img">
+            </div>
+            <h1 class="profile-name">梁靖苓<span class="profile-nickname">梁梁</span></h1>
+            <div class="school-info">
+                <p>中正大學</p>
+                <p>傳播學系</p>
+            </div>
+        </div>
+
+        <!-- 右側核心特質 (占比 60%，靠右固定) -->
+        <div class="info-side">
+            
+            <!-- 人格特質 -->
+            <div class="info-card">
+                <div class="card-tag">
+                    <span>⚡</span>
+                    <span>人格特質</span>
+                </div>
+                <div class="card-content">
+                    （你來認識我 就知道了
+                </div>
+            </div>
+
+            <!-- 個人興趣 -->
+            <div class="info-card">
+                <div class="card-tag">
+                    <span>✦</span>
+                    <span>個人興趣</span>
+                </div>
+                <div class="card-content">
+                    打排球、策展、剪輯影片、動態錄影、和別人喇低賽
+                </div>
+            </div>
+
+            <!-- 專長技能 -->
+            <div class="info-card">
+                <div class="card-tag">
+                    <span>💪</span>
+                    <span>專長技能</span>
+                </div>
+                <div class="card-content">
+                    我很會給情緒價值、我也很會要求別人給我情緒價值
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 正下方的返回首頁按鍵（包含向左箭頭） -->
+    <div class="home-btn-container">
+        <a href="index.html" class="home-btn">
+            <!-- 向左的箭頭 SVG 圖標 -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            返回首頁
+        </a>
+    </div>
+
+</body>
+</html>

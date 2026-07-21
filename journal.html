@@ -72,7 +72,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 24px; /* 調緊方塊間距 */
-            margin-bottom: 45px;
+            margin-bottom: 60x;
         }
 
         /* 卡片主體：純白底色 + 金黃色實心粗邊框 */
@@ -143,6 +143,8 @@
             width: 100%;
             display: flex;
             justify-content: center;
+            clear: both;      /* 關鍵：防止與浮動或格線元素重疊 */
+            margin-top: 20px; /* 加上與上方卡片的緩衝距離 */
         }
 
         /* 「← 返回首頁」按鈕 */

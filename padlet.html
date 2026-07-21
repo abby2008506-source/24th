@@ -36,14 +36,14 @@
         }
 
         /* 天數列表排版 */
-        .day-list { 
+        .group-list { 
             display: flex;
             flex-direction: column;
             gap: 18px;
         }
         
         /* 天數方塊卡片樣式 */
-        .day-card { 
+        .group-card { 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -60,7 +60,7 @@
         }
         
         /* 右側的小箭頭與提示文字 */
-        .day-card::after {
+        .group-card::after {
             content: "前往Padlet ↗";
             font-size: 0.95rem;
             background-color: #2a9d8f;
@@ -71,14 +71,14 @@
         }
 
         /* 滑鼠懸停動畫效果 */
-        .day-card:hover { 
+        .group-card:hover { 
             transform: scale(1.02); 
             border-color: #f4a261; 
             color: #f4a261; 
             box-shadow: 0 8px 16px rgba(244, 162, 97, 0.3);
         }
         
-        .day-card:hover::after {
+        .group-card:hover::after {
             background-color: #f4a261;
         }
         

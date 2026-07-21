@@ -1,125 +1,54 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>相片集錦 - 第24期進階領培營</title>
-    <style>
-        /* 沿用海報的科技深藍色 */
-        body { 
-            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif; 
-            margin: 0; 
-            background-color: #0b2545; 
-            color: #ffffff; 
-            text-align: center; 
-        }
-        header { 
-            background: linear-gradient(135deg, #134074, #0b2545); 
-            padding: 50px 20px; 
-            border-bottom: 4px solid #e9c46a; 
-        }
-        header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5rem;
-        }
-        .container { 
-            max-width: 900px; 
-            margin: 40px auto; 
-            padding: 0 20px; 
-        }
-        
-        .intro-text {
-            font-size: 1.1rem;
-            color: #e9c46a;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
+        <!-- 卡片列表區 -->
+        <main class="album-list">
+            <!-- 第一天 -->
+            <div class="album-card">
+                <div class="card-content">
+                    <i class="fa-regular fa-calendar-days icon-calendar"></i>
+                    <span class="day-text">第一天</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 06</span>
+                </div>
+                <a href="#" target="_blank" class="btn-link">前往相簿 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
 
-        /* 天數列表排版 */
-        .group-list { 
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        
-        /* 天數方塊卡片樣式 */
-        .group-card { 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #ffffff; 
-            border: 3px solid #e9c46a; 
-            border-radius: 12px; 
-            padding: 20px 30px; 
-            text-decoration: none; 
-            color: #0b2545; 
-            font-weight: bold; 
-            font-size: 1.3rem; 
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        
-        /* 右側的小箭頭與提示文字 */
-        .group-card::after {
-            content: "前往相簿 ↗";
-            font-size: 0.95rem;
-            background-color: #2a9d8f;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            transition: all 0.2s;
-        }
+            <!-- 第二天 -->
+            <div class="album-card">
+                <div class="card-content">
+                    <i class="fa-regular fa-calendar-days icon-calendar"></i>
+                    <span class="day-text">第二天</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 07</span>
+                </div>
+                <a href="#" target="_blank" class="btn-link">前往相簿 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
 
-        /* 滑鼠懸停動畫效果 */
-        .group-card:hover { 
-            transform: scale(1.02); 
-            border-color: #f4a261; 
-            color: #f4a261; 
-            box-shadow: 0 8px 16px rgba(244, 162, 97, 0.3);
-        }
-        
-        .group-card:hover::after {
-            background-color: #f4a261;
-        }
-        
-        /* 返回首頁按鈕 */
-        .back-btn { 
-            display: inline-block; 
-            margin-top: 50px; 
-            padding: 12px 35px; 
-            background: #e9c46a; 
-            color: #0b2545; 
-            text-decoration: none; 
-            border-radius: 25px; 
-            font-weight: bold; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: background 0.2s;
-        }
-        .back-btn:hover {
-            background: #f4a261;
-        }
-    </style>
-</head>
-<body>
+            <!-- 第三天 -->
+            <div class="album-card">
+                <div class="card-content">
+                    <i class="fa-regular fa-calendar-days icon-calendar"></i>
+                    <span class="day-text">第三天</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 08</span>
+                </div>
+                <a href="#" target="_blank" class="btn-link">前往相簿 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
 
-    <header>
-        <h1>📸 相片集錦</h1>
-        <p>第 24 期進階領培營 精彩紀錄</p>
-    </header>
+            <!-- 新增：第四天 -->
+            <div class="album-card">
+                <div class="card-content">
+                    <i class="fa-regular fa-calendar-days icon-calendar"></i>
+                    <span class="day-text">第四天</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 09</span>
+                </div>
+                <a href="#" target="_blank" class="btn-link">前往相簿 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </main>
 
-    <div class="container">
-        <p class="intro-text">💡 提示：點擊下方天數方塊，會開啟新視窗前往該天的雲端相簿。</p>
-
-        <!-- 天數選擇方塊清單 -->
-        <div class="day-list">
-            <!-- 填入網址教學：請把 href="#" 裡面的 # 換成你當天的 Google 相簿網址 -->
-            <a href="https://drive.google.com/drive/folders/1b-yW4KuL0JsfMaYzrqMFgLJfXzhafhXH?usp=drive_link" target="_blank" class="day-card">📅 第一天 ｜ 07 / 06 </a>
-            <a href="https://drive.google.com/drive/folders/1JKozSoHp_4swQlpcmCKqzcwRvpI3DO7b?usp=drive_link" target="_blank" class="day-card">📅 第二天 ｜ 07 / 07 </a>
-            <a href="https://drive.google.com/drive/folders/1Vvo615vtYknMt7uePs9Z1ER-ZjRujB1W?usp=drive_link" target="_blank" class="day-card">📅 第三天 ｜ 07 / 08 </a>
-            <a href="https://drive.google.com/drive/folders/1A-tFCOFXticCnpBU4FgMT8lLpi3CBwSb?usp=drive_link" target="_blank" class="day-card">📅 第四天 ｜ 07 / 09 </a>
-        </div>
-
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <!-- 新增：下方返回按鈕區 -->
+        <footer class="footer-section">
+            <a href="#" class="btn-back">← 返回首頁</a>
+        </footer>
     </div>
 
 </body>

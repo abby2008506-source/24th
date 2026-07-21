@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>回顧影片</title>
+    <title>每日營刊&任務</title>
     <style>
         /* 全域重設 */
         * {
@@ -171,75 +171,185 @@
     <div class="page-container">
         <!-- 頁首標題區 -->
         <header class="header-section">
-            <h1 class="main-title"><span class="video-icon">🎬</span> 回顧影片</h1>
-            <p class="subtitle">第 24 期進階領導營 精彩紀錄</p>
+            <h1 class="main-title"><span class="video-icon">📖</span> 每日營刊&任務</h1>
+            <pclass="subtitle">第 24 期進階領培營 每日反思</p>
         </header>
 
         <!-- 提示文字區 -->
         <div class="tip-section">
-            <p>💡 提示：點擊下方封面即可觀看相對應的精彩回顧影片。</p>
+            <p>💡 提示：點擊下方個添方塊即可觀看相對應的每日營刊與任務。</p>
         </div>
 
-        <!-- 2x2 緊湊型卡片區 -->
-        <main class="video-grid">
-            
-            <!-- 第一格：第一天 -->
-            <div class="album-card-v2">
-                <div class="card-top-info">
-                    <span class="calendar-icon">📅</span>
-                    <span class="day-text">第一天</span>
-                    <span class="divider">|</span>
-                    <span class="date-text">07 / 06</span>
-                </div>
-                <div class="image-container">
-                    <!-- 🛠️ 請替換成您第一天的 A4 封面圖檔名 -->
-                    <img src="cover1.jpg" alt="第一天回顧封面">
-                </div>
-            </div>
+<!-- 1大 + 下方2x2 圖片方塊總合區區塊 -->
+<div class="video-grid-wrapper">
+    <style>
+        /* 核心網格排版 */
+        .video-grid {
+            width: 100%;
+            max-width: 720px; /* 限制寬度，確保 A4 直式方塊不會過大 */
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 標準 2 欄排列 */
+            gap: 24px; /* 卡片水平與垂直間距 */
+        }
 
-            <!-- 第二格：第二天 -->
-            <div class="album-card-v2">
-                <div class="card-top-info">
-                    <span class="calendar-icon">📅</span>
-                    <span class="day-text">第二天</span>
-                    <span class="divider">|</span>
-                    <span class="date-text">07 / 07</span>
-                </div>
-                <div class="image-container">
-                    <!-- 🛠️ 請替換成您第二天的 A4 封面圖檔名 -->
-                    <img src="cover2.jpg" alt="第二天回顧封面">
-                </div>
-            </div>
+        /* 讓最上方第一格（總回顧）橫跨兩欄滿版 */
+        .featured-row {
+            grid-column: span 2; 
+        }
 
-            <!-- 第三格：第三天 -->
-            <div class="album-card-v2">
-                <div class="card-top-info">
-                    <span class="calendar-icon">📅</span>
-                    <span class="day-text">第三天</span>
-                    <span class="divider">|</span>
-                    <span class="date-text">07 / 08</span>
-                </div>
-                <div class="image-container">
-                    <!-- 🛠️ 請替換成您第三天的 A4 封面圖檔名 -->
-                    <img src="cover3.jpg" alt="第三天回顧封面">
-                </div>
-            </div>
+        /* 卡片主體：純白底色 + 金黃色實心粗邊框 */
+        .album-card-v2 {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            border: 4px solid #ebb856; /* 複刻原圖金黃邊框 */
+            border-radius: 16px;
+            padding: 16px;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none; /* 移除超連結底線 */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
-            <!-- 第四格：第四天 -->
-            <div class="album-card-v2">
-                <div class="card-top-info">
-                    <span class="calendar-icon">📅</span>
-                    <span class="day-text">第四天</span>
-                    <span class="divider">|</span>
-                    <span class="date-text">07 / 09</span>
-                </div>
-                <div class="image-container">
-                    <!-- 🛠️ 請替換成您第四天的 A4 封面圖檔名 -->
-                    <img src="cover4.jpg" alt="第四天回顧封面">
-                </div>
-            </div>
+        /* 懸停滑鼠時的微動特效 */
+        .album-card-v2:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(235, 184, 86, 0.3);
+        }
 
-        </main>
+        /* 卡片頂端：天數與日期文字列 */
+        .card-top-info {
+            display: flex;
+            align-items: center;
+            color: #001833; /* 原圖深藍黑色文字 */
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-bottom: 1px dashed #dddddd; /* 虛線分隔線 */
+            padding-bottom: 8px;
+            white-space: nowrap;
+        }
+
+        .calendar-icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .day-text {
+            margin-right: 10px;
+        }
+
+        .divider {
+            color: #001833;
+            margin-right: 10px;
+            opacity: 0.8;
+        }
+
+        .date-text {
+            letter-spacing: 0.5px;
+        }
+
+        /* 卡片下方：鎖定 A4 直式比例的圖片容器 */
+        .image-container {
+            width: 100%;
+            position: relative;
+            padding-top: 141.42%; /* A4 直式黃金比例 (高寬比 1.414 : 1) */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 確保您的 A4 圖片填滿且不變形 */
+            background-color: #f5f5f5;
+        }
+
+        /* 手機版自動切換為單欄排列，防止寬度被過度擠壓 */
+        @media (max-width: 550px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .featured-row {
+                grid-column: span 1;
+            }
+        }
+    </style>
+
+    <main class="video-grid">
+        
+        <!-- 1. 最上方滿版大格：總回顧 -->
+        <a href="您的總回顧影片網址" target="_blank" class="album-card-v2 featured-row">
+            <div class="card-top-info">
+                <span class="calendar-icon">📅</span>
+                <span class="day-text">總回顧</span>
+                <span class="divider">|</span>
+                <span class="date-text">Full Movie</span>
+            </div>
+            <div class="image-container">
+                <img src="cover_all.jpg" alt="總回顧影片封面">
+            </div>
+        </a>
+
+        <!-- 2. 下方 2x2 格線：第一天 -->
+        <a href="您的第一天影片網址" target="_blank" class="album-card-v2">
+            <div class="card-top-info">
+                <span class="calendar-icon">📅</span>
+                <span class="day-text">第一天</span>
+                <span class="divider">|</span>
+                <span class="date-text">07 / 06</span>
+            </div>
+            <div class="image-container">
+                <img src="cover1.jpg" alt="第一天回顧封面">
+            </div>
+        </a>
+
+        <!-- 3. 下方 2x2 格線：第二天 -->
+        <a href="您的第二天影片網址" target="_blank" class="album-card-v2">
+            <div class="card-top-info">
+                <span class="calendar-icon">📅</span>
+                <span class="day-text">第二天</span>
+                <span class="divider">|</span>
+                <span class="date-text">07 / 07</span>
+            </div>
+            <div class="image-container">
+                <img src="cover2.jpg" alt="第二天回顧封面">
+            </div>
+        </a>
+
+        <!-- 4. 下方 2x2 格線：第三天 -->
+        <a href="您的第三天影片網址" target="_blank" class="album-card-v2">
+            <div class="card-top-info">
+                <span class="calendar-icon">📅</span>
+                <span class="day-text">第三天</span>
+                <span class="divider">|</span>
+                <span class="date-text">07 / 08</span>
+            </div>
+            <div class="image-container">
+                <img src="cover3.jpg" alt="第三天回顧封面">
+            </div>
+        </a>
+
+        <!-- 5. 下方 2x2 格線：第四天 -->
+        <a href="您的第四天影片網址" target="_blank" class="album-card-v2">
+            <div class="card-top-info">
+                <span class="calendar-icon">📅</span>
+                <span class="day-text">第四天</span>
+                <span class="divider">|</span>
+                <span class="date-text">07 / 09</span>
+            </div>
+            <div class="image-container">
+                <img src="cover4.jpg" alt="第四天回顧封面">
+            </div>
+        </a>
+
+    </main>
+</div>
 
         <!-- 下方返回首頁按鈕 -->
         <footer class="footer-area">

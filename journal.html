@@ -23,7 +23,7 @@
 
         .page-container {
             width: 100%;
-            max-width: 900px; /* 稍微放大最大寬度，讓 2x2 的 A4 直式方塊有更好的視覺伸展空間 */
+            max-width: 720px; /* 縮小網頁整體最大寬度，防方塊過大 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -66,40 +66,76 @@
             letter-spacing: 0.5px;
         }
 
-        /* 核心 2x2 格線排版 */
+        /* 2x2 格線排版 */
         .video-grid {
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 完美的 2 欄排列 */
-            gap: 30px; /* 圖片方塊之間的間距 */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px; /* 調緊方塊間距 */
             margin-bottom: 45px;
         }
 
-        /* 單個卡片方塊：純白底色 + 金黃色實心粗邊框 */
-        .image-card {
+        /* 卡片主體：純白底色 + 金黃色實心粗邊框 */
+        .album-card-v2 {
             background-color: #ffffff;
-            border: 4px solid #ebb856; /* 完全複刻原圖卡片的金黃邊框 */
-            border-radius: 16px;       /* 完全複刻原圖卡片的圓角 */
-            padding: 12px;             /* 內襯間距，凸顯白底層次 */
+            border: 4px solid #ebb856; /* 複刻原圖金黃邊框 */
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column; /* 改為上下排列，上方放文字、下方放圖片 */
+            gap: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            
-            /* 關鍵：利用 CSS padding 技巧，鎖定 A4 直式比例（寬高比 1 : 1.414） */
-            position: relative;
-            padding-top: calc(141.42% - 24px); 
-            height: 0;
-            overflow: hidden;
         }
 
-        /* 嵌入封面圖片的自適應控制 */
-        .image-card img {
+        /* 卡片上方：完美還原原本的天數與日期列 */
+        .card-top-info {
+            display: flex;
+            align-items: center;
+            color: #001833; /* 原圖深藍黑色文字 */
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-bottom: 1px dashed #dddddd; /* 加上淡淡的分隔線，增加精緻感 */
+            padding-bottom: 8px;
+        }
+
+        .calendar-icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .day-text {
+            margin-right: 10px;
+        }
+
+        .divider {
+            color: #001833;
+            margin-right: 10px;
+            opacity: 0.8;
+        }
+
+        .date-text {
+            letter-spacing: 0.5px;
+        }
+
+        /* 卡片下方：A4 比例的封面圖片容器（等比例縮小版） */
+        .image-container {
+            width: 100%;
+            position: relative;
+            /* 鎖定 A4 直式比例 (寬高比 1 : 1.414) */
+            padding-top: 141.42%; 
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .image-container img {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            width: calc(100% - 24px);
-            height: calc(100% - 24px);
-            border-radius: 8px; /* 圖片微圓角 */
-            object-fit: cover;  /* 確保圖片填滿格線且不變形 */
-            background-color: #f5f5f5; /* 圖片載入前的淡底色 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 確保 A4 圖片不變形且完美填滿 */
+            background-color: #f5f5f5;
         }
 
         /* 下方返回按鈕區域 */
@@ -109,7 +145,7 @@
             justify-content: center;
         }
 
-        /* 「← 返回首頁」按鈕：完全遵照原圖 */
+        /* 「← 返回首頁」按鈕 */
         .btn-back {
             background-color: #ebb856; 
             color: #000000; 
@@ -121,8 +157,8 @@
             text-align: center;
         }
 
-        /* 行動裝置響應式優化：若螢幕太小自動改為單欄，避免 A4 方塊縮得太小 */
-        @media (max-width: 600px) {
+        /* 手機版自動切換為單欄排列，避免 A4 方塊在窄螢幕擠壓變形 */
+        @media (max-width: 550px) {
             .video-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -144,31 +180,65 @@
             <p>💡 提示：點擊下方封面即可觀看相對應的精彩回顧影片。</p>
         </div>
 
-        <!-- 2x2 圖片方塊區 -->
+        <!-- 2x2 緊湊型卡片區 -->
         <main class="video-grid">
-            <!-- 第一格 -->
-            <div class="image-card">
-                <!-- 🛠️ 請把 src="cover1.jpg" 換成您實際的 A4 圖片檔名或路徑 -->
-                <img src="cover1.jpg" alt="影片封面 1">
+            
+            <!-- 第一格：第一天 -->
+            <div class="album-card-v2">
+                <div class="card-top-info">
+                    <span class="calendar-icon">📅</span>
+                    <span class="day-text">第一天</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 06</span>
+                </div>
+                <div class="image-container">
+                    <!-- 🛠️ 請替換成您第一天的 A4 封面圖檔名 -->
+                    <img src="cover1.jpg" alt="第一天回顧封面">
+                </div>
             </div>
 
-            <!-- 第二格 -->
-            <div class="image-card">
-                <!-- 🛠️ 請把 src="cover2.jpg" 換成您實際的 A4 圖片檔名或路徑 -->
-                <img src="cover2.jpg" alt="影片封面 2">
+            <!-- 第二格：第二天 -->
+            <div class="album-card-v2">
+                <div class="card-top-info">
+                    <span class="calendar-icon">📅</span>
+                    <span class="day-text">第二天</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 07</span>
+                </div>
+                <div class="image-container">
+                    <!-- 🛠️ 請替換成您第二天的 A4 封面圖檔名 -->
+                    <img src="cover2.jpg" alt="第二天回顧封面">
+                </div>
             </div>
 
-            <!-- 第三格 -->
-            <div class="image-card">
-                <!-- 🛠️ 請把 src="cover3.jpg" 換成您實際的 A4 圖片檔名或路徑 -->
-                <img src="cover3.jpg" alt="影片封面 3">
+            <!-- 第三格：第三天 -->
+            <div class="album-card-v2">
+                <div class="card-top-info">
+                    <span class="calendar-icon">📅</span>
+                    <span class="day-text">第三天</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 08</span>
+                </div>
+                <div class="image-container">
+                    <!-- 🛠️ 請替換成您第三天的 A4 封面圖檔名 -->
+                    <img src="cover3.jpg" alt="第三天回顧封面">
+                </div>
             </div>
 
-            <!-- 第四格 -->
-            <div class="image-card">
-                <!-- 🛠️ 請把 src="cover4.jpg" 換成您實際的 A4 圖片檔名或路徑 -->
-                <img src="cover4.jpg" alt="影片封面 4">
+            <!-- 第四格：第四天 -->
+            <div class="album-card-v2">
+                <div class="card-top-info">
+                    <span class="calendar-icon">📅</span>
+                    <span class="day-text">第四天</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 09</span>
+                </div>
+                <div class="image-container">
+                    <!-- 🛠️ 請替換成您第四天的 A4 封面圖檔名 -->
+                    <img src="cover4.jpg" alt="第四天回顧封面">
+                </div>
             </div>
+
         </main>
 
         <!-- 下方返回首頁按鈕 -->
@@ -179,4 +249,3 @@
 
 </body>
 </html>
-

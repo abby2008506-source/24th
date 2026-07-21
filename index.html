@@ -338,16 +338,25 @@
         </div> <!-- 結束 team-container (右側團隊介紹總容器) -->
     </div> <!-- 結束 hero-banner (頂部海報與小隊輔大區塊) -->
 
-    <!-- 下半部：新增的七個功能鍵區塊 -->
-    <div class="container">
-        <div class="grid">
-            <a href="journal.rules.html" class="card">📰 創刊號</a>
-            <a href="journal.html" class="card">📖 每日營刊＆任務</a>
-            <a href="mission.html" class="card">🎬 回顧影片</a>
-            <a href="photos.html" class="card">📸 相片錦集</a>
-            <a href="padlet.html" class="card">📌 Padlet</a>
-        </div>
-    </div>
+  <!-- 下半部：新增的七個功能鍵區塊 -->
+<div class="container">
+  <!-- 這是控制上三下二置中的容器 -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 800px; margin: 0 auto;">
+    
+    <!-- 第一排（3個按鈕） -->
+    <a href="journal.rules.html" class="card" style="flex: 1 1 calc(33.33% - 15px); min-width: 180px; text-align: center;">📰 創刊號</a>
+    <a href="journal.html" class="card" style="flex: 1 1 calc(33.33% - 15px); min-width: 180px; text-align: center;">📖 每日營刊&任務</a>
+    <a href="mission.html" class="card" style="flex: 1 1 calc(33.33% - 15px); min-width: 180px; text-align: center;">🎬 回顧影片</a>
+    
+    <!-- 第二排（2個按鈕：自動置中對稱） -->
+    <a href="padlet.html" class="card" style="flex: 0 1 calc(33.33% - 15px); min-width: 180px; text-align: center;">📌 Padlet</a>
+    <a href="classroom.html" class="card" style="flex: 0 1 calc(33.33% - 15px); min-width: 180px; text-align: center;">
+      <svg viewBox="0 0 24 24" style="height: 1.1em; width: 1.1em; vertical-align: middle; margin-right: 6px; display: inline-block;"><rect x="2" y="4" width="20" height="14" rx="1.5" fill="#137333" stroke="#F4B400" stroke-width="1.5"/><line x1="6" y1="18" x2="4" y2="21" stroke="#5f6368" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="18" x2="20" y2="21" stroke="#5f6368" stroke-width="2" stroke-linecap="round"/></svg>classroom
+    </a>
+    
+  </div>
+</div>
+
 
     <!-- 頁尾資訊欄 -->
     <footer>

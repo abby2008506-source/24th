@@ -338,23 +338,24 @@
         </div> <!-- 結束 team-container (右側團隊介紹總容器) -->
     </div> <!-- 結束 hero-banner (頂部海報與小隊輔大區塊) -->
 <!-- 下半部：新增的七個功能鍵區塊 -->
-<div class="container">
-  <!-- 這是控制上三下二置中的容器 -->
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 900px; margin: 0 auto; width: 100%;">
+<div class="container" style="max-width: 1000px !important; width: 100% !important; margin: 0 auto !important;">
+  <!-- 強制覆蓋原本 grid 的排版，改為 flex 置中 -->
+  <div style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 20px !important; width: 100% !important; box-sizing: border-box !important;">
     
-    <!-- 第一排（3個按鈕：縮小寬度佔比以確保不折行） -->
-    <a href="journal.rules.html" class="card" style="flex: 0 1 calc(30% - 15px); min-width: 140px; text-align: center;">📰 創刊號</a>
-    <a href="journal.html" class="card" style="flex: 0 1 calc(30% - 15px); min-width: 140px; text-align: center;">📖 每日營刊&任務</a>
-    <a href="mission.html" class="card" style="flex: 0 1 calc(30% - 15px); min-width: 140px; text-align: center;">🎬 回顧影片</a>
+    <!-- 第一排（3個按鈕）：強制設定寬度為固定比例，不被原本的 CSS 撐大 -->
+    <a href="journal.rules.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">📰 創刊號</a>
+    <a href="journal.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">📖 每日營刊&任務</a>
+    <a href="mission.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">🎬 回顧影片</a>
     
-    <!-- 第二排（2個按鈕：維持與上方按鈕同寬且置中） -->
-    <a href="padlet.html" class="card" style="flex: 0 1 calc(30% - 15px); min-width: 140px; text-align: center;">📌 Padlet</a>
-    <a href="classroom.html" class="card" style="flex: 0 1 calc(30% - 15px); min-width: 140px; text-align: center;">
+    <!-- 第二排（2個按鈕）：維持與上方完全相同的寬度限制 -->
+    <a href="padlet.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">📌 Padlet</a>
+    <a href="classroom.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">
       <svg viewBox="0 0 24 24" style="height: 1.1em; width: 1.1em; vertical-align: middle; margin-right: 6px; display: inline-block;"><rect x="2" y="4" width="20" height="14" rx="1.5" fill="#137333" stroke="#F4B400" stroke-width="1.5"/><line x1="6" y1="18" x2="4" y2="21" stroke="#5f6368" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="18" x2="20" y2="21" stroke="#5f6368" stroke-width="2" stroke-linecap="round"/></svg>classroom
     </a>
     
   </div>
 </div>
+
 
     <!-- 頁尾資訊欄 -->
     <footer>

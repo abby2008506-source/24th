@@ -1,68 +1,265 @@
-<!-- 下半部：各組 Padlet 雲端看板連結與返回按鈕 -->
-<div class="container" style="max-width: 1000px !important; width: 100% !important; margin: 40px auto 0 auto !important; padding: 0 15px; box-sizing: border-box;">
-  
-  <!-- 提示文字 -->
-  <p class="intro-text" style="color: #F4B400; text-align: center; font-size: 0.95rem; margin-bottom: 25px;">
-    💡 提示：點擊下方各組別方塊，會開啟新視窗前往該組Padlet。
-  </p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padlet</title>
+    <!-- 這裡直接把所有顏色、外框、排版的 CSS 樣式包進來，確保絕對能讀取到顏色 -->
+    <style>
+        /* 全域重設 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
+        }
 
-  <!-- 天數選擇方塊清單（左四右四排版容器） -->
-  <div class="group-list" style="display: flex !important; justify-content: space-between !important; gap: 30px !important; width: 100% !important; box-sizing: border-box !important; margin-bottom: 40px !important;">
-      
-      <!-- 左半邊：第一組到第四組 -->
-      <div style="display: flex !important; flex-direction: column !important; gap: 18px !important; width: 48% !important;">
-          <!-- 第一組 -->
-          <a href="https://reurl.cc/r0y2Dx" target="_blank" style="display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 18px 25px !important; box-sizing: border-box !important; text-decoration: none !important; background-color: #ffffff !important; border: 3px solid #E6B450 !important; border-radius: 20px !important; box-shadow: 0 5px 8px rgba(0,0,0,0.2) !important;">
-            <span style="font-size: 1.2rem; font-weight: bold; color: #1c2d42 !important;">👥 第一組</span>
-            <span style="background: linear-gradient(135deg, #16b39b, #10806f) !important; color: white !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.9rem !important; font-weight: bold !important; border: none !important;">前往看板 ↗</span>
-          </a>
-          <!-- 第二組 -->
-          <a href="https://reurl.cc" target="_blank" style="display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 18px 25px !important; box-sizing: border-box !important; text-decoration: none !important; background-color: #ffffff !important; border: 3px solid #E6B450 !important; border-radius: 20px !important; box-shadow: 0 5px 8px rgba(0,0,0,0.2) !important;">
-            <span style="font-size: 1.2rem; font-weight: bold; color: #1c2d42 !important;">👥 第二組</span>
-            <span style="background: linear-gradient(135deg, #16b39b, #10806f) !important; color: white !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.9rem !important; font-weight: bold !important; border: none !important;">前往看板 ↗</span>
-          </a>
-          <!-- 第三組 -->
-          <a href="https://reurl.cc/R25grx" target="_blank" style="display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 18px 25px !important; box-sizing: border-box !important; text-decoration: none !important; background-color: #ffffff !important; border: 3px solid #E6B450 !important; border-radius: 20px !important; box-shadow: 0 5px 8px rgba(0,0,0,0.2) !important;">
-            <span style="font-size: 1.2rem; font-weight: bold; color: #1c2d42 !important;">👥 第三組</span>
-            <span style="background: linear-gradient(135deg, #16b39b, #10806f) !important; color: white !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.9rem !important; font-weight: bold !important; border: none !important;">前往看板 ↗</span>
-          </a>
-          <!-- 第四組 -->
-          <a href="https://reurl.cc" target="_blank" style="display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 18px 25px !important; box-sizing: border-box !important; text-decoration: none !important; background-color: #ffffff !important; border: 3px solid #E6B450 !important; border-radius: 20px !important; box-shadow: 0 5px 8px rgba(0,0,0,0.2) !important;">
-            <span style="font-size: 1.2rem; font-weight: bold; color: #1c2d42 !important;">👥 第四組</span>
-            <span style="background: linear-gradient(135deg, #16b39b, #10806f) !important; color: white !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.9rem !important; font-weight: bold !important; border: none !important;">前往看板 ↗</span>
-          </a>
-      </div>
+        body {
+            background-color: #0b2341; /* 精準還原原圖深藍背景色 */
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
 
-      <!-- 右半邊：第五組到第八組 -->
-      <div style="display: flex !important; flex-direction: column !important; gap: 15px !important; width: 48% !important;">
-          <!-- 第五組 -->
-          <a href="https://reurl.cc" target="_blank" style="display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 18px 25px !important; box-sizing: border-box !important; text-decoration: none !important; background-color: #ffffff !important; border: 3px solid #E6B450 !important; border-radius: 20px !important; box-shadow: 0 5px 8px rgba(0,0,0,0.2) !important;">
-            <span style="font-size: 1.2rem; font-weight: bold; color: #1c2d42 !important;">👥 第五組</span>
-            <span style="background: linear-gradient(135deg, #16b39b, #10806f) !important; color: white !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.9rem !important; font-weight: bold !important; border: none !important;">前往看板 ↗</span>
-          </a>
-          <!-- 第六組 -->
-          <a href="https://reurl.cc/53jQpV" target="_blank" style="display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 18px 25px !important; box-sizing: border-box !important; text-decoration: none !important; background-color: #ffffff !important; border: 3px solid #E6B450 !important; border-radius: 20px !important; box-shadow: 0 5px 8px rgba(0,0,0,0.2) !important;">
-            <span style="font-size: 1.2rem; font-weight: bold; color: #1c2d42 !important;">👥 第六組</span>
-            <span style="background: linear-gradient(135deg, #16b39b, #10806f) !important; color: white !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.9rem !important; font-weight: bold !important; border: none !important;">前往看板 ↗</span>
-          </a>
-          <!-- 第七組 -->
-          <a href="https://reurl.cc/186Em8" target="_blank" style="display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 18px 25px !important; box-sizing: border-box !important; text-decoration: none !important; background-color: #ffffff !important; border: 3px solid #E6B450 !important; border-radius: 20px !important; box-shadow: 0 5px 8px rgba(0,0,0,0.2) !important;">
-            <span style="font-size: 1.2rem; font-weight: bold; color: #1c2d42 !important;">👥 第七組</span>
-            <span style="background: linear-gradient(135deg, #16b39b, #10806f) !important; color: white !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.9rem !important; font-weight: bold !important; border: none !important;">前往看板 ↗</span>
-          </a>
-          <!-- 第八組 -->
-          <a href="https://reurl.cc/ovk6Qq" target="_blank" style="display: flex !important; align-items: center !important; justify-content: space-between !important; width: 100% !important; padding: 18px 25px !important; box-sizing: border-box !important; text-decoration: none !important; background-color: #ffffff !important; border: 3px solid #E6B450 !important; border-radius: 20px !important; box-shadow: 0 5px 8px rgba(0,0,0,0.2) !important;">
-            <span style="font-size: 1.2rem; font-weight: bold; color: #1c2d42 !important;">👥 第八組</span>
-            <span style="background: linear-gradient(135deg, #16b39b, #10806f) !important; color: white !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.9rem !important; font-weight: bold !important; border: none !important;">前往看板 ↗</span>
-          </a>
-      </div>
-  </div>
+        .page-container {
+            width: 100%;
+            max-width: 820px; /* 貼合原圖卡片寬度 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-  <!-- 置中的「← 返回首頁」黃色圓角按鈕 -->
-  <div style="text-align: center !important; margin-top: 45px !important; margin-bottom: 25px !important;">
-    <a href="index.html" class="back-btn" style="display: inline-block !important; background-color: #E6B450 !important; color: #1c2d42 !important; padding: 12px 35px !important; border-radius: 25px !important; font-size: 1rem !important; font-weight: bold !important; text-decoration: none !important; box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;">
-      ← 返回首頁
-    </a>
-  </div>
+        /* 頁首標題區 */
+        .header-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
 
-</div>
+        .main-title {
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .camera-icon {
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: #b0c4de;
+            letter-spacing: 1px;
+        }
+
+        /* 提示文字區 */
+        .tip-section {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 0.95rem;
+            color: #ebb856; /* 與圖片相符的金黃色提示字 */
+            letter-spacing: 0.5px;
+        }
+
+        /* 卡片列表區 */
+        .album-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px; /* 卡片垂直間距 */
+            margin-bottom: 45px;
+        }
+
+        /* 卡片主體：純白底色 + 金黃色實心粗邊框 */
+        .album-card {
+            background-color: #ffffff;
+            border: 4px solid #ebb856; /* 精準還原圖片金黃邊框色 */
+            border-radius: 16px;
+            padding: 18px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 卡片左側文字內容 */
+        .card-left {
+            display: flex;
+            align-items: center;
+            color: #001833; /* 圖片中深藍黑色文字 */
+            font-size: 1.35rem;
+            font-weight: bold;
+        }
+
+        .calendar-icon {
+            font-size: 1.4rem;
+            margin-right: 14px;
+        }
+
+        .day-text {
+            margin-right: 12px;
+        }
+
+        .divider {
+            color: #001833;
+            margin-right: 12px;
+            opacity: 0.8;
+        }
+
+        .date-text {
+            letter-spacing: 0.5px;
+        }
+
+        /* 右側「前往相簿」按鈕 */
+        .btn-goto {
+            background-color: #1ca394; /* 圖片中準確的深青綠色 */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 下方返回按鈕區域 */
+        .footer-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 「← 返回首頁」按鈕：完全扁平膠囊狀、全黑字體不加粗 */
+        .btn-back {
+            background-color: #ebb856; /* 圖片中下方的柔和金黃色 */
+            color: #000000; /* 全黑純文字 */
+            text-decoration: none;
+            padding: 10px 45px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500; /* 文字不加粗 */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- 頁首標題區 -->
+        <header class="header-section">
+            <h1 class="main-title"><span class="camera-icon">📌</span> Padlet</h1>
+            <p class="subtitle">第 24 期進階領培營 城探成果</p>
+        </header>
+
+        <!-- 提示文字區 -->
+        <div class="tip-section">
+            <p>💡 提示：點擊下方組別方塊，會開啟新視窗前往該組的Padlet成果。</p>
+        </div>
+
+        <!-- 卡片列表區 -->
+        <main class="album-list">
+            <!-- 第一組 -->
+            <div class="album-card">
+                <div class="card-left">
+                    <span class="calendar-icon">👥</span>
+                    <span class="day-text">第一組</span>
+                    <span class="divider"> </span>
+                    <span class="date-text"> </span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1b-yW4KuL0JsfMaYzrqMFgLJfXzhafhXH?usp=drive_link" target="_blank" class="btn-goto">前往相簿 ↗</a>
+            </div>
+
+            <!-- 第二組 -->
+            <div class="album-card">
+                <div class="card-left">
+                    <span class="calendar-icon">👥</span>
+                    <span class="day-text">第二組</span>
+                    <span class="divider"> </span>
+                    <span class="date-text"> </span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1JKozSoHp_4swQlpcmCKqzcwRvpI3DO7b?usp=drive_link" target="_blank" class="btn-goto">前往相簿 ↗</a>
+            </div>
+
+            <!-- 第三組 -->
+            <div class="album-card">
+                <div class="card-left">
+                    <span class="calendar-icon">👥</span>
+                    <span class="day-text">第三組</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 08</span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Vvo615vtYknMt7uePs9Z1ER-ZjRujB1W?usp=drive_link" target="_blank" class="btn-goto">前往相簿 ↗</a>
+            </div>
+
+            <!-- 第四組 -->
+            <div class="album-card">
+                <div class="card-left">
+                    <span class="calendar-icon">👥</span>
+                    <span class="day-text">第四組</span>
+                    <span class="divider"> </span>
+                    <span class="date-text"> </span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1A-tFCOFXticCnpBU4FgMT8lLpi3CBwSb?usp=drive_link" target="_blank" class="btn-goto">前往相簿 ↗</a>
+            </div>
+
+            <!-- 第五組 -->
+            <div class="album-card">
+                <div class="card-left">
+                    <span class="calendar-icon">👥</span>
+                    <span class="day-text">第五組</span>
+                    <span class="divider">|</span>
+                    <span class="date-text">07 / 09</span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1A-tFCOFXticCnpBU4FgMT8lLpi3CBwSb?usp=drive_link" target="_blank" class="btn-goto">前往相簿 ↗</a>
+            </div>
+
+            <!-- 第六組 -->
+            <div class="album-card">
+                <div class="card-left">
+                    <span class="calendar-icon">👥</span>
+                    <span class="day-text">第六組</span>
+                    <span class="divider"> </span>
+                    <span class="date-text"> </span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1A-tFCOFXticCnpBU4FgMT8lLpi3CBwSb?usp=drive_link" target="_blank" class="btn-goto">前往相簿 ↗</a>
+            </div>
+
+            <!-- 第七組 -->
+            <div class="album-card">
+                <div class="card-left">
+                    <span class="calendar-icon">👥</span>
+                    <span class="day-text">第七組</span>
+                    <span class="divider"> </span>
+                    <span class="date-text"> </span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1A-tFCOFXticCnpBU4FgMT8lLpi3CBwSb?usp=drive_link" target="_blank" class="btn-goto">前往相簿 ↗</a>
+            </div>
+
+            <!-- 第八組 -->
+            <div class="album-card">
+                <div class="card-left">
+                    <span class="calendar-icon">👥</span>
+                    <span class="day-text">第八組</span>
+                    <span class="divider"> </span>
+                    <span class="date-text"> </span>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1A-tFCOFXticCnpBU4FgMT8lLpi3CBwSb?usp=drive_link" target="_blank" class="btn-goto">前往相簿 ↗</a>
+            </div>
+        </main>
+
+        <!-- 下方返回首頁按鈕 -->
+        <footer class="footer-area">
+            <a href="index.html" class="btn-back">← 返回首頁</a>
+        </footer>
+    </div>
+
+</body>
+</html>

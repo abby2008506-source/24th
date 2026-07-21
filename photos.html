@@ -1,52 +1,78 @@
-        <!-- 卡片列表區 -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相片集錦</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 Font Awesome 用於箭頭等圖標 -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- 頁首標題區 -->
+        <header class="header-section">
+            <h1 class="main-title">
+                <span class="camera-icon">📷</span> 相片集錦
+            </h1>
+            <p class="subtitle">第 24 期進階領導營 精彩紀錄</p>
+        </header>
+
+        <!-- 提示文字區 -->
+        <div class="tip-section">
+            <p>💡 提示：點擊下方天數方塊，會開啟新視窗前往該天的雲端相簿。</p>
+        </div>
+
+        <!-- 卡片列表區（第一天至第四天） -->
         <main class="album-list">
             <!-- 第一天 -->
             <div class="album-card">
-                <div class="card-content">
-                    <i class="fa-regular fa-calendar-days icon-calendar"></i>
+                <div class="card-left">
+                    <span class="calendar-icon">📅</span>
                     <span class="day-text">第一天</span>
                     <span class="divider">|</span>
                     <span class="date-text">07 / 06</span>
                 </div>
-                <a href="#" target="_blank" class="btn-link">前往相簿 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="#" target="_blank" class="btn-goto">前往相簿 ↗</a>
             </div>
 
             <!-- 第二天 -->
             <div class="album-card">
-                <div class="card-content">
-                    <i class="fa-regular fa-calendar-days icon-calendar"></i>
+                <div class="card-left">
+                    <span class="calendar-icon">📅</span>
                     <span class="day-text">第二天</span>
                     <span class="divider">|</span>
                     <span class="date-text">07 / 07</span>
                 </div>
-                <a href="#" target="_blank" class="btn-link">前往相簿 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="#" target="_blank" class="btn-goto">前往相簿 ↗</a>
             </div>
 
             <!-- 第三天 -->
             <div class="album-card">
-                <div class="card-content">
-                    <i class="fa-regular fa-calendar-days icon-calendar"></i>
+                <div class="card-left">
+                    <span class="calendar-icon">📅</span>
                     <span class="day-text">第三天</span>
                     <span class="divider">|</span>
                     <span class="date-text">07 / 08</span>
                 </div>
-                <a href="#" target="_blank" class="btn-link">前往相簿 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="#" target="_blank" class="btn-goto">前往相簿 ↗</a>
             </div>
 
-            <!-- 新增：第四天 -->
+            <!-- 第四天 -->
             <div class="album-card">
-                <div class="card-content">
-                    <i class="fa-regular fa-calendar-days icon-calendar"></i>
+                <div class="card-left">
+                    <span class="calendar-icon">📅</span>
                     <span class="day-text">第四天</span>
                     <span class="divider">|</span>
                     <span class="date-text">07 / 09</span>
                 </div>
-                <a href="#" target="_blank" class="btn-link">前往相簿 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="#" target="_blank" class="btn-goto">前往相簿 ↗</a>
             </div>
         </main>
 
-        <!-- 新增：下方返回按鈕區 -->
-        <footer class="footer-section">
+        <!-- 下方返回首頁按鈕 -->
+        <footer class="footer-area">
             <a href="#" class="btn-back">← 返回首頁</a>
         </footer>
     </div>

@@ -338,11 +338,10 @@
         </div> <!-- 結束 team-container (右側團隊介紹總容器) -->
     </div> <!-- 結束 hero-banner (頂部海報與小隊輔大區塊) -->
 <!-- 下半部：新增的五個功能鍵區塊 -->
-<!-- 🚀 優化外層：加入專用類名 mobile-center-container 以便在手機版進行外層校正 -->
 <div class="container mobile-center-container" style="max-width: 1000px !important; width: 100% !important; margin: 30px auto 0 auto !important;">
   
   <style>
-    /* 💻 電腦版：嚴格鎖定上三下二置中對稱 */
+    /* 💻 電腦版：維持原本的上三下二置中對稱 */
     .responsive-btn-group {
       display: flex !important; 
       flex-wrap: wrap !important; 
@@ -360,39 +359,36 @@
       box-sizing: border-box !important;
     }
 
-    /* 📱 手機版：雙層強力置中校正（外層+內層同步洗掉干擾） */
+    /* 📱 手機版：強力校正與往左推回中心 */
     @media (max-width: 600px) {
-      /* 🛠️ 第一關：校正最外層大容器，防止大容器自己偏右 */
       .mobile-center-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding-left: 0 !important;  /* 🚀 強制消除可能把畫面往右推的左邊距 */
-        padding-right: 0 !important; /* 🚀 強制消除右邊距 */
-        margin-left: 0 !important;   /* 🚀 確保外層不往右偏移 */
+        width: 100vw !important;      /* 🚀 強制讓容器寬度等於手機螢幕的 100% */
+        max-width: 100vw !important;
+        padding: 0 !important;
+        /* 🚀 關鍵核心：利用負外邊距把被外層往右推的空間，生硬地往左扯回來 24 像素 */
+        margin-left: -24px !important; 
         margin-right: 0 !important;
         text-align: center !important;
+        box-sizing: border-box !important;
       }
 
-      /* 🛠️ 第二關：校正按鈕包覆層 */
       .responsive-btn-group {
         flex-direction: column !important; 
-        align-items: center !important;    /* 🚀 讓內部的方塊在正中央排成一列 */
+        align-items: center !important;    
         justify-content: center !important;
         width: 100% !important;
         padding: 0 !important;
         margin: 0 auto !important;
       }
 
-      /* 🛠️ 第三關：校正方塊本身 */
       .responsive-btn-group .card {
-        width: 85% !important;             /* 手機版方塊寬度 */
+        width: 85% !important;             /* 方塊寬度佔手機螢幕 85%，兩邊留空剛剛好 */
         min-width: 0 !important;           
         max-width: 100% !important;        
-        margin: 0 0 15px 0 !important;     /* 🚀 清空左右外邊距，改用下邊距作為方塊間隔 */
+        margin: 0 0 15px 0 !important;     /* 方塊與方塊之間的上下間距 */
         text-align: center !important;
       }
       
-      /* 最後一個方塊不需要下邊距 */
       .responsive-btn-group .card:last-child {
         margin-bottom: 0 !important;
       }
@@ -401,12 +397,12 @@
 
   <!-- 核心按鈕區 -->
   <div class="responsive-btn-group">
-    <!-- 第一排（3個按鈕）：創刊號、每日營刊、回顧影片 -->
+    <!-- 第一排 -->
     <a href="journal.rules.pdf" class="card">📰 創刊號</a>
     <a href="journal.html" class="card">📖 每日營刊&任務</a>
     <a href="mission.html" class="card">🎬 回顧影片</a>
     
-    <!-- 第二排（2個按鈕）：相片錦集、Padlet -->
+    <!-- 第二排 -->
     <a href="photos.html" class="card">📸 相片錦集</a>
     <a href="padlet.html" class="card">📌 Padlet</a>
   </div>

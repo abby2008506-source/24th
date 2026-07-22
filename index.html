@@ -337,22 +337,55 @@
 
         </div> <!-- 結束 team-container (右側團隊介紹總容器) -->
     </div> <!-- 結束 hero-banner (頂部海報與小隊輔大區塊) -->
-<!-- 下半部：新增的七個功能鍵區塊 -->
+<!-- 下半部：新增的五個功能鍵區塊 -->
 <div class="container" style="max-width: 1000px !important; width: 100% !important; margin: 30px auto 0 auto !important;">
-  <!-- 強制改為 flex 置中排版，並與上方線條保持 30px 距離 -->
-  <div style="display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 20px !important; width: 100% !important; box-sizing: border-box !important;">
-    
+  
+  <style>
+    /* 💻 電腦版：嚴格鎖定上三下二置中對稱 */
+    .responsive-btn-group {
+      display: flex !important; 
+      flex-wrap: wrap !important; 
+      justify-content: center !important; /* 👈 關鍵：確保第二排的 2 個方塊絕對置中對稱 */
+      gap: 20px !important; 
+      width: 100% !important; 
+      box-sizing: border-box !important;
+    }
+    .responsive-btn-group .card {
+      display: inline-block !important; 
+      width: 28% !important;             /* 28% x 3 = 84%，剛好留空間給 gap，強迫第4、5個掉下去 */
+      min-width: 150px !important; 
+      max-width: 250px !important; 
+      text-align: center !important; 
+      box-sizing: border-box !important;
+    }
+
+    /* 📱 手機版：當螢幕小於 600px 時自動一條龍排下來 */
+    @media (max-width: 600px) {
+      .responsive-btn-group {
+        flex-direction: column !important; /* 改為垂直一列 */
+        align-items: center !important;    /* 手機版同樣保持置中 */
+        gap: 15px !important;              
+      }
+      .responsive-btn-group .card {
+        width: 85% !important;             /* 手機版單個按鈕寬度 */
+        max-width: 100% !important;        /* 解除電腦版 250px 的限制 */
+      }
+    }
+  </style>
+
+  <!-- 核心按鈕區 -->
+  <div class="responsive-btn-group">
     <!-- 第一排（3個按鈕）：創刊號、每日營刊、回顧影片 -->
-    <a href="journal.rules.pdf" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">📰 創刊號</a>
-    <a href="journal.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">📖 每日營刊&任務</a>
-    <a href="mission.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">🎬 回顧影片</a>
+    <a href="journal.rules.pdf" class="card">📰 創刊號</a>
+    <a href="journal.html" class="card">📖 每日營刊&任務</a>
+    <a href="mission.html" class="card">🎬 回顧影片</a>
     
-    <!-- 第二排（2個按鈕）：相片錦集、Padlet（維持同寬並自動水平置中） -->
-    <a href="photos.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">📸 相片錦集</a>
-    <a href="padlet.html" class="card" style="display: inline-block !important; width: 28% !important; min-width: 150px !important; max-width: 250px !important; text-align: center !important; box-sizing: border-box !important;">📌 Padlet</a>
-    
+    <!-- 第二排（2個按鈕）：相片錦集、Padlet（會在下方自動置中對稱） -->
+    <a href="photos.html" class="card">📸 相片錦集</a>
+    <a href="padlet.html" class="card">📌 Padlet</a>
   </div>
 </div>
+
     <!-- 頁尾資訊欄 -->
     <footer>
         <p>【主辦單位】 教育部國民及學前教育署</p>

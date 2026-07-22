@@ -23,7 +23,7 @@
 
         .page-container {
             width: 100%;
-            max-width: 1050px; /* 🚀 縮小最大寬度，防止 A4 卡片在超大螢幕上過大 */
+            max-width: 1050px; /* 縮小最大寬度，防止 A4 卡片在超大螢幕上過大 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -102,33 +102,22 @@
             <p>💡 提示：點擊下方各天方塊即可觀看相對應的每日營刊與任務。</p>
         </div>
 
-        <!-- 1大(左) + 4小(右2x2) 圖片方塊總合區區塊 -->
+        <!-- 1大(左) + 3小(右側精緻網格) 圖片方塊總合區區塊 -->
         <div class="video-grid-wrapper" style="width: 100%;">
             <style>
-                /* 🚀 核心排版：將寬度改為兩等分 (1fr 1fr)
-                   左邊一個大方塊，右邊四個小方塊，這樣兩邊的寬度與基礎高度比例才能完美對稱。
-                */
+                /* 核心排版：將寬度左右分家 */
                 .video-grid {
                     width: 100%;
                     margin: 0 auto;
                     display: grid;
                     grid-template-columns: 1fr 1fr; 
-                    gap: 32px; /* 🚀 調大左右主間距，視覺上更大器 */
+                    gap: 32px; 
                     align-items: start;
                 }
 
-                /* 左側大方塊：獨立一欄，垂直跨越兩列 */
+                /* 左側大方塊：獨立一欄 */
                 .featured-row {
                     grid-column: 1;       
-                    grid-row: span 2;     
-                }
-
-                /* 🚀 關鍵改動：右側四個小方塊的網格
-                   原本直接平鋪在 main 裡面，現在我們利用 CSS 讓右側 2x2 在垂直方向上的間距（row-gap）
-                   可以自動彈性伸縮，這樣即使左邊是大 A4、右邊是兩個小 A4，兩邊的「底部邊緣」也能精準對齊！
-                */
-                .video-grid {
-                    grid-template-rows: auto auto;
                 }
 
                 /* 卡片主體：純白底色 + 金黃色實心粗邊框 */
@@ -182,9 +171,7 @@
                     letter-spacing: 0.5px;
                 }
 
-                /* 🚀 核心比例鎖定：不論大方塊或小方塊，
-                   全部透過 padding-top: 141.42% 完美鎖定 A4 直式比例 (高寬比 1.414 : 1) 
-                */
+                /* 🚀 核心比例鎖定：全部卡片封面皆為 141.42% 的 A4 黃金比例 */
                 .image-container {
                     width: 100%;
                     position: relative;
@@ -200,33 +187,45 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    object-fit: cover; /* 確保您的 A4 圖片完美填滿、絕不變形 */
+                    object-fit: cover; 
                     background-color: #f5f5f5;
                 }
 
-                /* 🚀 右側四個小方塊在「非手機版」時，建立一個內部的 2x2 網格 */
+                /* 🚀 右側三個小方塊的新佈局網格 
+                   我們讓它是個兩欄網格，並利用橫跨來達到「第一天在最上面橫跨，二三天在下面並排」
+                */
                 .small-cards-container {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
-                    gap: 20px; /* 小方塊之間的上下左右間距 */
+                    gap: 20px; 
                 }
 
-                /* RWD 手機版自動流暢切換 */
+                /* 🚀 視覺微調：讓第一天橫跨兩欄，這樣版面就會有雜誌設計的高級感，
+                   且完美填滿右邊的矩形空間，上下邊緣剛好與左邊大 A4 高度巧妙呼應！
+                */
+                .small-cards-container .album-card-v2:nth-child(1) {
+                    grid-column: span 2;
+                }
+
+                /* RWD 手機版自動流暢切換為單行，防止窄螢幕擠壓 */
                 @media (max-width: 800px) {
                     .video-grid {
-                        grid-template-columns: 1fr; /* 全都變成單欄 */
+                        grid-template-columns: 1fr; 
                         gap: 20px;
                     }
                     .small-cards-container {
-                        grid-template-columns: 1fr; /* 右邊四個在手機版也變單欄 */
+                        grid-template-columns: 1fr; 
                         gap: 20px;
+                    }
+                    .small-cards-container .album-card-v2:nth-child(1) {
+                        grid-column: span 1;
                     }
                 }
             </style>
 
             <main class="video-grid">
                 
-                <!-- 1. 左邊：總營刊 (維持獨立大 A4 比例) -->
+                <!-- 1. 左邊：總營刊 (嚴格鎖定獨立大 A4 比例) -->
                 <div class="featured-row">
                     <a href="您的總回顧影片網址" target="_blank" class="album-card-v2">
                         <div class="card-top-info">
@@ -241,9 +240,9 @@
                     </a>
                 </div>
 
-                <!-- ➡️ 右邊：包覆四個小方塊的 2x2 區域 -->
+                <!-- ➡️ 右邊：包覆三個小方塊的錯落設計區域 -->
                 <div class="small-cards-container">
-                    <!-- 2. 第一天 -->
+                    <!-- 2. 第一天 (網格中會自動置頂並橫跨滿版) -->
                     <a href="您的第一天影片網址" target="_blank" class="album-card-v2">
                         <div class="card-top-info">
                             <span class="calendar-icon">📅</span>
@@ -281,13 +280,16 @@
                             <img src="cover3.jpg" alt="第三天回顧封面">
                         </div>
                     </a>
+                </div>
 
-                    <!-- 5. 第四天 -->
-                    <a href="您的第四天影片網址" target="_blank" class="album-card-v2">
-                        <div class="card-top-info">
-                            <span class="calendar-icon">📅</span>
-                            <span class="day-text">第四天</span>
-                            <span class="divider">|</span>
-                            <span class="date-text">07 / 09</span>
-                        </div>
-                        <div class="image-container">
+            </main>
+        </div>
+
+        <!-- 下方返回首頁按鈕 -->
+        <footer class="footer-area">
+            <a href="index.html" class="btn-back">← 返回首頁</a>
+        </footer>
+    </div>
+
+</body>
+</html>

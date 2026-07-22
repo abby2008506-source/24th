@@ -338,7 +338,8 @@
         </div> <!-- 結束 team-container (右側團隊介紹總容器) -->
     </div> <!-- 結束 hero-banner (頂部海報與小隊輔大區塊) -->
 <!-- 下半部：新增的五個功能鍵區塊 -->
-<div class="container" style="max-width: 1000px !important; width: 100% !important; margin: 30px auto 0 auto !important;">
+<!-- 🚀 優化外層：加入專用類名 mobile-center-container 以便在手機版進行外層校正 -->
+<div class="container mobile-center-container" style="max-width: 1000px !important; width: 100% !important; margin: 30px auto 0 auto !important;">
   
   <style>
     /* 💻 電腦版：嚴格鎖定上三下二置中對稱 */
@@ -359,19 +360,41 @@
       box-sizing: border-box !important;
     }
 
-    /* 📱 手機版：完全置中修正 */
+    /* 📱 手機版：雙層強力置中校正（外層+內層同步洗掉干擾） */
     @media (max-width: 600px) {
+      /* 🛠️ 第一關：校正最外層大容器，防止大容器自己偏右 */
+      .mobile-center-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 0 !important;  /* 🚀 強制消除可能把畫面往右推的左邊距 */
+        padding-right: 0 !important; /* 🚀 強制消除右邊距 */
+        margin-left: 0 !important;   /* 🚀 確保外層不往右偏移 */
+        margin-right: 0 !important;
+        text-align: center !important;
+      }
+
+      /* 🛠️ 第二關：校正按鈕包覆層 */
       .responsive-btn-group {
-        flex-direction: column !important; /* 轉為垂直一列 */
-        align-items: center !important;    /* 🚀 強制讓容器內的內容完全水平居中 */
+        flex-direction: column !important; 
+        align-items: center !important;    /* 🚀 讓內部的方塊在正中央排成一列 */
+        justify-content: center !important;
         width: 100% !important;
         padding: 0 !important;
+        margin: 0 auto !important;
       }
+
+      /* 🛠️ 第三關：校正方塊本身 */
       .responsive-btn-group .card {
-        width: 85% !important;             /* 手機版按鈕寬度佔螢幕 85% */
-        min-width: 0 !important;           /* 🚀 破除可能干擾的最小寬度 */
-        max-width: 100% !important;        /* 解除電腦版 250px 限制 */
-        margin: 0 auto !important;         /* 🚀 關鍵核心：清除原本可能存在的 margin，左右自動均分置中 */
+        width: 85% !important;             /* 手機版方塊寬度 */
+        min-width: 0 !important;           
+        max-width: 100% !important;        
+        margin: 0 0 15px 0 !important;     /* 🚀 清空左右外邊距，改用下邊距作為方塊間隔 */
+        text-align: center !important;
+      }
+      
+      /* 最後一個方塊不需要下邊距 */
+      .responsive-btn-group .card:last-child {
+        margin-bottom: 0 !important;
       }
     }
   </style>
@@ -388,7 +411,6 @@
     <a href="padlet.html" class="card">📌 Padlet</a>
   </div>
 </div>
-
 
     <!-- 頁尾資訊欄 -->
     <footer>

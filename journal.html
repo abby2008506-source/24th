@@ -23,7 +23,7 @@
 
         .page-container {
             width: 100%;
-            max-width: 850px; /* 🚀 優化：縮小最大寬度，讓左右單欄並排時的 A4 尺寸最精緻、不巨大 */
+            max-width: 1150px; /* 🚀 優化最大寬度：讓 4 欄並排時的 A4 尺寸最舒適精緻 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -62,7 +62,7 @@
             text-align: center;
             margin-bottom: 35px;
             font-size: 0.95rem;
-            color: #ebb856; /* 延續原圖金黃色提示字 */
+            color: #ebb856; 
             letter-spacing: 0.5px;
         }
 
@@ -72,7 +72,7 @@
             display: flex;
             justify-content: center;
             clear: both;      
-            margin-top: 40px; 
+            margin-top: 50px; 
         }
 
         /* 「← 返回首頁」按鈕 */
@@ -102,33 +102,19 @@
             <p>💡 提示：點擊下方各天方塊即可觀看相對應的每日營刊與任務。</p>
         </div>
 
-        <!-- 1大(左) + 3小垂直並排(右) 圖片方塊總合區區塊 -->
+        <!-- 4欄水平並排區塊 -->
         <div class="video-grid-wrapper" style="width: 100%;">
             <style>
-                /* 🚀 核心排版：左側大欄佔 1.6 比例，右側小欄佔 1 比例 
-                   這比例能讓左邊單個大 A4 與右邊三個小 A4 的總高度達到視覺平衡
+                /* 🚀 核心排版：將網格軌道直接設定為均分 4 欄 (repeat(4, 1fr))
+                   四個卡片完全平起平坐，完美填滿一整排 
                 */
                 .video-grid {
                     width: 100%;
                     margin: 0 auto;
                     display: grid;
-                    grid-template-columns: 1.6fr 1fr; 
-                    gap: 32px; 
+                    grid-template-columns: repeat(4, 1fr); 
+                    gap: 20px; /* 調整卡片彼此之間的水平間距 */
                     align-items: start;
-                }
-
-                /* 左側大方塊：固定在第一欄 */
-                .featured-row {
-                    grid-column: 1;       
-                }
-
-                /* 🚀 右側容器：改成直式單欄（Flex 垂直排列）
-                   這樣第一、二、三天寬度相同、位階相同，且通通小於左邊的總營刊
-                */
-                .small-cards-container {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 20px; /* 三個小方塊之間的垂直間距 */
                 }
 
                 /* 卡片主體：純白底色 + 金黃色實心粗邊框 */
@@ -145,7 +131,6 @@
                     transition: transform 0.2s ease, box-shadow 0.2s ease;
                 }
 
-                /* 懸停滑鼠時的微動特效 */
                 .album-card-v2:hover {
                     transform: translateY(-3px);
                     box-shadow: 0 6px 20px rgba(235, 184, 86, 0.3);
@@ -156,7 +141,7 @@
                     display: flex;
                     align-items: center;
                     color: #001833; 
-                    font-size: 1.2rem;
+                    font-size: 1.15rem; /* 稍微縮小字體防止 4 欄時文字被過度擠壓 */
                     font-weight: bold;
                     border-bottom: 1px dashed #dddddd; 
                     padding-bottom: 8px;
@@ -164,17 +149,17 @@
                 }
 
                 .calendar-icon {
-                    font-size: 1.2rem;
-                    margin-right: 10px;
+                    font-size: 1.1rem;
+                    margin-right: 6px;
                 }
 
                 .day-text {
-                    margin-right: 10px;
+                    margin-right: 6px;
                 }
 
                 .divider {
                     color: #001833;
-                    margin-right: 10px;
+                    margin-right: 6px;
                     opacity: 0.8;
                 }
 
@@ -182,7 +167,7 @@
                     letter-spacing: 0.5px;
                 }
 
-                /* 🚀 核心比例鎖定：不論大小方塊，封面均嚴格維持 1:1.414 的 A4 比例 */
+                /* 🚀 核心比例鎖定：所有封面全部精準鎖定 1:1.414 的 A4 直式比例 */
                 .image-container {
                     width: 100%;
                     position: relative;
@@ -202,10 +187,20 @@
                     background-color: #f5f5f5;
                 }
 
-                /* RWD 手機版自動切換：螢幕窄時垂直整列排下來 */
-                @media (max-width: 768px) {
+                /* 🚀 RWD 行動裝置化排版 
+                   當螢幕縮小到平版或手機時，4 欄橫排會被擠扁，此時自動切換為優雅的 2x2 排列
+                */
+                @media (max-width: 900px) {
                     .video-grid {
-                        grid-template-columns: 1fr; 
+                        grid-template-columns: repeat(2, 1fr); /* 平版或小螢幕切換成 2x2 */
+                        gap: 24px;
+                    }
+                }
+
+                /* 當螢幕在極小手機（小於550px）時，切換為全單欄排列 */
+                @media (max-width: 550px) {
+                    .video-grid {
+                        grid-template-columns: 1fr; /* 手機切換成單行直立 */
                         gap: 20px;
                     }
                 }
@@ -213,62 +208,57 @@
 
             <main class="video-grid">
                 
-                <!-- 1. 左邊：總營刊 (最高位階的大 A4) -->
-                <div class="featured-row">
-                    <a href="您的總回顧影片網址" target="_blank" class="album-card-v2">
-                        <div class="card-top-info">
-                            <span class="calendar-icon">📅</span>
-                            <span class="day-text">總營刊</span>
-                            <span class="divider"> </span>
-                            <span class="date-text"> </span>
-                        </div>
-                        <div class="image-container">
-                            <img src="cover_all.jpg" alt="總回顧影片封面">
-                        </div>
-                    </a>
-                </div>
+                <!-- 1. 總營刊 -->
+                <a href="您的總回顧影片網址" target="_blank" class="album-card-v2">
+                    <div class="card-top-info">
+                        <span class="calendar-icon">📅</span>
+                        <span class="day-text">總營刊</span>
+                        <span class="divider"> </span>
+                        <span class="date-text"> </span>
+                    </div>
+                    <div class="image-container">
+                        <img src="cover_all.jpg" alt="總回顧影片封面">
+                    </div>
+                </a>
 
-                <!-- ➡️ 右邊：三個小方塊 (乖乖垂直單行排列，矮總營刊一截) -->
-                <div class="small-cards-container">
-                    <!-- 2. 第一天 -->
-                    <a href="您的第一天影片網址" target="_blank" class="album-card-v2">
-                        <div class="card-top-info">
-                            <span class="calendar-icon">📅</span>
-                            <span class="day-text">第一天</span>
-                            <span class="divider">|</span>
-                            <span class="date-text">07 / 06</span>
-                        </div>
-                        <div class="image-container">
-                            <img src="cover1.jpg" alt="第一天回顧封面">
-                        </div>
-                    </a>
+                <!-- 2. 第一天 -->
+                <a href="您的第一天影片網址" target="_blank" class="album-card-v2">
+                    <div class="card-top-info">
+                        <span class="calendar-icon">📅</span>
+                        <span class="day-text">第一天</span>
+                        <span class="divider">|</span>
+                        <span class="date-text">07 / 06</span>
+                    </div>
+                    <div class="image-container">
+                        <img src="cover1.jpg" alt="第一天回顧封面">
+                    </div>
+                </a>
 
-                    <!-- 3. 第二天 -->
-                    <a href="您的第二天影片網址" target="_blank" class="album-card-v2">
-                        <div class="card-top-info">
-                            <span class="calendar-icon">📅</span>
-                            <span class="day-text">第二天</span>
-                            <span class="divider">|</span>
-                            <span class="date-text">07 / 07</span>
-                        </div>
-                        <div class="image-container">
-                            <img src="cover2.jpg" alt="第二天回顧封面">
-                        </div>
-                    </a>
+                <!-- 3. 第二天 -->
+                <a href="您的第二天影片網址" target="_blank" class="album-card-v2">
+                    <div class="card-top-info">
+                        <span class="calendar-icon">📅</span>
+                        <span class="day-text">第二天</span>
+                        <span class="divider">|</span>
+                        <span class="date-text">07 / 07</span>
+                    </div>
+                    <div class="image-container">
+                        <img src="cover2.jpg" alt="第二天回顧封面">
+                    </div>
+                </a>
 
-                    <!-- 4. 第三天 -->
-                    <a href="您的第三天影片網址" target="_blank" class="album-card-v2">
-                        <div class="card-top-info">
-                            <span class="calendar-icon">📅</span>
-                            <span class="day-text">第三天</span>
-                            <span class="divider">|</span>
-                            <span class="date-text">07 / 08</span>
-                        </div>
-                        <div class="image-container">
-                            <img src="cover3.jpg" alt="第三天回顧封面">
-                        </div>
-                    </a>
-                </div>
+                <!-- 4. 第三天 -->
+                <a href="您的第三天影片網址" target="_blank" class="album-card-v2">
+                    <div class="card-top-info">
+                        <span class="calendar-icon">📅</span>
+                        <span class="day-text">第三天</span>
+                        <span class="divider">|</span>
+                        <span class="date-text">07 / 08</span>
+                    </div>
+                    <div class="image-container">
+                        <img src="cover3.jpg" alt="第三天回顧封面">
+                    </div>
+                </a>
 
             </main>
         </div>

@@ -177,27 +177,34 @@
             margin: 40px auto; 
             padding: 0 20px; 
         }
-        
-        /* 點選方塊 RWD 網格排版 */
+                /* 點選方塊 RWD 網格排版（將 280px 優化為 310px，防止窄螢幕擠壓） */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); 
             gap: 25px; 
         }
         
-        /* 點選方塊卡片樣式 */
+        /* 點選方塊卡片樣式（修正防跑版、並維持原海報主色） */
         .card { 
             background: #ffffff; 
             border: 3px solid #e9c46a; 
             border-radius: 16px; 
-            padding: 40px 20px; 
+            padding: 35px 15px; /* 微調內距，留給橫向文字更多空間 */
             text-decoration: none; 
             color: #0b2545; 
             font-weight: bold; 
             font-size: 1.3rem; 
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+            /* ⚡ 核心修復：強制不折行與彈性置中 ⚡ */
+            white-space: nowrap;      /* 強制文字不論如何都不准折行 */
+            display: flex;            /* 啟用彈性盒子排版 */
+            align-items: center;      /* 垂直居中 */
+            justify-content: center;   /* 水平居中 */
+            gap: 10px;                /* 圖示與文字之間的固定間距 */
         }
+
         
         /* 滑鼠懸停動畫效果 */
         .card:hover { 
